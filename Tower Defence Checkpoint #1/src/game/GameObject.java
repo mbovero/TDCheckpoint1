@@ -3,8 +3,6 @@ package game;
 import java.awt.Graphics;
 
 abstract public class GameObject {
-
-	Control control; //added for testing
 	
     protected boolean isVisible; 
     protected boolean isExpired;
@@ -13,7 +11,7 @@ abstract public class GameObject {
     public boolean isExpired() { return isExpired; }
 
     abstract public void update (double elapsedTime);
-    abstract public void draw (Graphics g);
+    abstract public void draw (Graphics g, Control control);
 	
 	public static void main(String[] args) 
 	{

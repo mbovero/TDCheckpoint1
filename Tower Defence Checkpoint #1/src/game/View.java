@@ -28,13 +28,13 @@ public class View extends JPanel {
 	}
 	
 	public void paint(Graphics g)
-	{
-		g.drawImage(control.getImage("path_2a.jpg"), 0, 0, null);
+	{	
+		System.out.println("repainting...");
 		
 		// Loop over the list of the current frame's game objects (from the game State object) and draw them
         for (GameObject go : state.getFrameObjects())
-            if (go.isVisible() && go.isExpired())
-                go.draw(g);
+            if (go.isVisible() && !go.isExpired())
+                go.draw(g, control);
 	}
 	
 	public static void main(String[] args) 

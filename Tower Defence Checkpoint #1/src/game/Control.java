@@ -62,6 +62,9 @@ public class Control implements Runnable {
             ClassLoader myLoader = this.getClass().getClassLoader();
             InputStream imageStream = myLoader.getResourceAsStream("resources/" + filename);
             BufferedImage image = javax.imageio.ImageIO.read(imageStream);
+            
+            System.out.println("returning image...");
+            
             return image;
         }
         catch (IOException e)

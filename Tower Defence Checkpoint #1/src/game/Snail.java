@@ -28,7 +28,7 @@ public class Snail extends GameObject{
 	}
 
 	@Override
-	public void draw(Graphics g) 
+	public void draw(Graphics g, Control control) 
 	{
         g.drawImage(control.getImage("snail.png"), test, test, null);
 	}
