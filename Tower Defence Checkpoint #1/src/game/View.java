@@ -29,8 +29,12 @@ public class View extends JPanel {
 	
 	public void paint(Graphics g)
 	{
-		g.setColor(Color.blue);
-		g.fillRect(150, 150, 150, 150);
+		g.drawImage(control.getImage("path_2a.jpg"), 0, 0, null);
+		
+		// Loop over the list of the current frame's game objects (from the game State object) and draw them
+        for (GameObject go : state.getFrameObjects())
+            if (go.isVisible() && go.isExpired())
+                go.draw(g);
 	}
 	
 	public static void main(String[] args) 
