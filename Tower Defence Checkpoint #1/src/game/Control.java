@@ -1,3 +1,9 @@
+/**
+ * This class manages and sets up all aspects of the Tower Defense game.
+ *
+ * @author Miles Bovero, Kirt Robinson
+ * @version November 14, 2022
+ */
 package game;
 
 import java.awt.image.BufferedImage;

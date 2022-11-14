@@ -1,3 +1,10 @@
+/**
+ * This is an abstract class that is used to set up GameObject objects. It gives
+ * the GameObject objects the required methods.
+ *
+ * @author Miles Bovero, Kirt Robinson
+ * @version November 14, 2022
+ */
 package game;
 
 import java.awt.Graphics;

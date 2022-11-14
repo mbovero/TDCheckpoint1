@@ -1,3 +1,9 @@
+/**
+ *This class holds the current properties of the game objects in the Tower Defense game.
+ *
+ * @author Miles Bovero, Kirt Robinson
+ * @version November 14, 2022
+ */
 package game;
 
 import java.util.ArrayList;

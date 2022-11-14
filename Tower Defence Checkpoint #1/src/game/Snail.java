@@ -1,3 +1,9 @@
+/**
+ * This class creates and allows for interactions and use of a Snail object.
+ *
+ * @author Miles Bovero, Kirt Robinson
+ * @version November 14, 2022
+ */
 package game;
 
 import java.awt.Graphics;

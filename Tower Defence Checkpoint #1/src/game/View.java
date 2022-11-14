@@ -1,3 +1,9 @@
+/**
+ * This class sets up and allows for the graphical objects to be seen in the Tower Defense game.
+ *
+ * @author Miles Bovero, Kirt Robinson
+ * @version November 14, 2022
+ */
 package game;
 
 import java.awt.Color;

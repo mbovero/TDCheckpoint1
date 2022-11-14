@@ -1,3 +1,9 @@
+/**
+ * This class creates and allows for interactions and use of a Background object.
+ *
+ * @author Miles Bovero, Kirt Robinson
+ * @Version November 14, 2022
+ */
 package game;
 
 import java.awt.Graphics;
