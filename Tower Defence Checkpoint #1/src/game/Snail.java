@@ -7,16 +7,15 @@
 package game;
 
 import java.awt.Graphics;
+import java.awt.Point;
 
 public class Snail extends GameObject{
 
     private double percentage;
-    private int test;  // Remove this later
     
     public Snail() 
     {
         percentage = 0;
-        test = 100;  // Remove this later
         isVisible = true;
         isExpired = false;
     }
@@ -30,13 +29,13 @@ public class Snail extends GameObject{
 	public void update(double elapsedTime) 
 	{
         percentage += 0.001;
-        test++;	
 	}
 
 	@Override
 	public void draw(Graphics g, Control control) 
 	{
-        g.drawImage(control.getImage("snail.png"), test, test, null);
-	}
+        Point loc = control.getPath().convertToCoordinates(percentage);
+        g.drawImage(control.getImage("snail.png"), loc.x, loc.y, null);	
+    }
 
 }

@@ -35,7 +35,7 @@ public class View extends JPanel {
 	
 	public void paint(Graphics g)
 	{	
-		System.out.println("repainting...");
+		//System.out.println("repainting...");
 		
 		// Loop over the list of the current frame's game objects (from the game State object) and draw them
         for (GameObject go : state.getFrameObjects())

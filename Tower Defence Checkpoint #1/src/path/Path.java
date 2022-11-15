@@ -107,4 +107,56 @@ public class Path {
 		for (int i=0; i<this.getPointCount()-1; i++)
 			g.drawLine(this.getX(i), this.getY(i), this.getX(i+1), this.getY(i+1));
 	}
+
+	/** 
+	 * Given a percentage between 0% and 100%, this method calculates
+	 * the location along the path that is exactly this percentage
+	 * along the path. The location is returned in a Point object
+	 * (integer x and y), and the location is a screen coordinate.
+	 * 
+	 * If the percentage is less than 0%, the starting position is
+	 * returned. If the percentage is greater than 100%, the final
+	 * position is returned.
+	 * 
+	 * Callers must not change the x or y coordinates of any returned
+	 * point object (or the caller could be changing the path).
+	 * 
+	 * @param percentTraveled a distance along the path
+	 * @return the screen coordinate of this position along the path
+	 */
+	public Point convertToCoordinates(double percentTraveled) 
+	{
+		// Find total path length
+		double length = 0;
+		for (int i=0; i<this.getPointCount()-1; i++)
+			length += Math.sqrt(this.getX(i)*this.getX(i+1) + this.getY(i)*this.getY(i+1));
+		
+		// Calculate distance along entire path
+		length *= percentTraveled;
+		//System.out.println("The snail is at length: " + length);
+		
+		// Find segment the object is at
+		double lengthCalc = 0;
+		int segmentNum = 0; 
+		for (int i=0; i<this.getPointCount()-1; i++)
+		{
+			lengthCalc += Math.sqrt(this.getX(i)*this.getX(i+1) + this.getY(i)*this.getY(i+1));
+			if (lengthCalc >= length)
+			{
+				segmentNum = i;
+				break;
+			}
+		}
+		//System.out.println("The snail is at segment: " + (segmentNum + 1));
+		
+		// Find percentage along specific segment
+		double segmentDistance = (Math.sqrt(this.getX(segmentNum)*this.getX(segmentNum+1) + this.getY(segmentNum)*this.getY(segmentNum+1)));
+		double distancePastSegment = segmentDistance - (lengthCalc-length);
+		double segmentPercent = (distancePastSegment)/segmentDistance;
+		double x = (1-segmentPercent)*this.getX(segmentNum) + (segmentPercent)*this.getX(segmentNum+1);
+		double y = (1-segmentPercent)*this.getY(segmentNum) + (segmentPercent)*this.getY(segmentNum+1);
+
+		
+		return new Point((int)x, (int)y);
+	}
 }
