@@ -126,6 +126,11 @@ public class Path {
 	 */
 	public Point convertToCoordinates(double percentTraveled) 
 	{
+		//Detect less than %0 or greater than %100
+		if (percentTraveled <= 0)
+			return new Point(this.getX(0), this.getY(0));
+		if (percentTraveled >= 1)
+			return new Point(this.getX(getPointCount()-1), this.getY(getPointCount()-1));
 		// Find total path length
 		double length = 0;
 		for (int i=0; i<this.getPointCount()-1; i++)
