@@ -20,10 +20,4 @@ abstract public class GameObject {
     abstract public void update (double elapsedTime);
     abstract public void draw (Graphics g, Control control);
 	
-	public static void main(String[] args) 
-	{
-		// TODO Auto-generated method stub
-
-	}
-
 }

@@ -134,7 +134,7 @@ public class Path {
 		// Find total path length
 		double length = 0;
 		for (int i=0; i<this.getPointCount()-1; i++)
-			length += Math.sqrt(this.getX(i)*this.getX(i+1) + this.getY(i)*this.getY(i+1));
+			length += Math.sqrt((this.getX(i+1)-this.getX(i))*(this.getX(i+1)-this.getX(i)) + (this.getY(i+1)-this.getY(i))*(this.getY(i+1)-this.getY(i)));
 		
 		// Calculate distance along entire path
 		length *= percentTraveled;
@@ -145,8 +145,8 @@ public class Path {
 		int segmentNum = 0; 
 		for (int i=0; i<this.getPointCount()-1; i++)
 		{
-			lengthCalc += Math.sqrt(this.getX(i)*this.getX(i+1) + this.getY(i)*this.getY(i+1));
-			if (lengthCalc >= length)
+			length -= Math.sqrt((this.getX(i+1)-this.getX(i))*(this.getX(i+1)-this.getX(i)) + (this.getY(i+1)-this.getY(i))*(this.getY(i+1)-this.getY(i)));
+			if (length <= 0)
 			{
 				segmentNum = i;
 				break;
@@ -155,12 +155,15 @@ public class Path {
 		//System.out.println("The snail is at segment: " + (segmentNum + 1));
 		
 		// Find percentage along specific segment
-		double segmentDistance = (Math.sqrt(this.getX(segmentNum)*this.getX(segmentNum+1) + this.getY(segmentNum)*this.getY(segmentNum+1)));
-		double distancePastSegment = segmentDistance - (lengthCalc-length);
-		double segmentPercent = (distancePastSegment)/segmentDistance;
+		double segmentLength = Math.sqrt((this.getX(segmentNum+1)-this.getX(segmentNum))*(this.getX(segmentNum+1)-this.getX(segmentNum)) + (this.getY(segmentNum+1)-this.getY(segmentNum))*(this.getY(segmentNum+1)-this.getY(segmentNum)));
+		double distancePastSegment = segmentLength + length;
+
+		double segmentPercent = (distancePastSegment)/segmentLength;
 		double x = (1-segmentPercent)*this.getX(segmentNum) + (segmentPercent)*this.getX(segmentNum+1);
 		double y = (1-segmentPercent)*this.getY(segmentNum) + (segmentPercent)*this.getY(segmentNum+1);
 
+		
+		
 		
 		return new Point((int)x, (int)y);
 	}

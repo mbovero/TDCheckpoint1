@@ -43,10 +43,4 @@ public class View extends JPanel {
                 go.draw(g, control);
 	}
 	
-	public static void main(String[] args) 
-	{
-		// TODO Auto-generated method stub
-
-	}
-
 }

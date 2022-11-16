@@ -19,16 +19,11 @@ public class Snail extends GameObject{
         isVisible = true;
         isExpired = false;
     }
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public void update(double elapsedTime) 
 	{
-        percentage += 0.001;
+        percentage += 0.0025;
 	}
 
 	@Override
