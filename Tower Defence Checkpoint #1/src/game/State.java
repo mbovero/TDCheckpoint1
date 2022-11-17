@@ -13,6 +13,8 @@ public class State {
 
 	List<GameObject> currentFrameGameObjects;
 	List<GameObject> nextFrameGameObjects;
+    int health;
+    int money;
 	
     public State()
     {
@@ -43,6 +45,11 @@ public class State {
      */
     public void finishFrame ()
     {
+        for (GameObject go : currentFrameGameObjects)
+        {
+            if (go.isExpired()==true)
+                currentFrameGameObjects.remove(go);
+        }
         currentFrameGameObjects = nextFrameGameObjects;
         nextFrameGameObjects = null;  // PJ added this -- it makes it clear there is only a current list now.
     }
@@ -57,4 +64,22 @@ public class State {
         nextFrameGameObjects.add(go);
     }
 
+    /**
+     * Gets the amount of health held by the user
+     *
+     * @return health currently held by the user
+     */
+    public int getHealth() {return this.health;}
+
+    /**
+     * Gets the amount of money held by the user
+     *
+     * @return money currently held by the player
+     */
+    public int getMoney() {return this.money;}
+
+    public void changeMoney()
+    {
+
+    }
 }

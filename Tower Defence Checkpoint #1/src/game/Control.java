@@ -9,8 +9,10 @@ package game;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.swing.Timer;
@@ -38,13 +40,15 @@ public class Control implements Runnable, ActionListener {
 	        Scanner pathScanner = new Scanner(pathStream);
 	        path = new Path(pathScanner); // Builds your path using your Path class
 		} catch (Exception e){
-			System.out.println("Error occured while loading path.");
+			System.out.println("Error occurred while loading path.");
 		}
 	        
 		state = new State();
 	    view = new View(this, state);
-	    
+
 	    state.startFrame();  // Prepares the creation of the 'next' frame
+        state.health = 100;
+        state.money = 100;
         state.addGameObject(new Background());  // Add one background object to our list
         state.addGameObject(new Snail());  // Add one snail to our list
         state.finishFrame();    // Mark the next frame as ready
