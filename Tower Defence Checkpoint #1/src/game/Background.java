@@ -10,10 +10,13 @@ import java.awt.Graphics;
 
 public class Background extends GameObject{
 
-	public Background () 
+	
+	public Background (State state, Control control) 
 	{
         isVisible = true;
         isExpired = false;
+        this.state = state;
+        this.control = control;
 	}
 	
 	@Override
@@ -23,7 +26,7 @@ public class Background extends GameObject{
 	}
 
 	@Override
-	public void draw(Graphics g, Control control) 
+	public void draw(Graphics g) 
 	{
         g.drawImage(control.loadImage("path_2a.jpg"), 0, 0, null);
 	}

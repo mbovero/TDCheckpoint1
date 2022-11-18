@@ -39,7 +39,7 @@ public class View extends JPanel {
 		// Loop over the list of the current frame's game objects (from the game State object) and draw them
         for (GameObject go : state.getFrameObjects())
             if (go.isVisible() && !go.isExpired())
-                go.draw(g, control);
+                go.draw(g);
 	}
 	
 }

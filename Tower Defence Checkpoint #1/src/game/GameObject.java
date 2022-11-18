@@ -13,11 +13,14 @@ abstract public class GameObject {
 	
     protected boolean isVisible; 
     protected boolean isExpired;
+    
+	protected State state;
+	protected Control control;
 
     public boolean isVisible() { return isVisible; }
     public boolean isExpired() { return isExpired; }
 
     abstract public void update (double elapsedTime);
-    abstract public void draw (Graphics g, Control control);
+    abstract public void draw (Graphics g);
 	
 }

@@ -52,8 +52,8 @@ public class Control implements Runnable, ActionListener {
 	    state.startFrame();  // Prepares the creation of the 'next' frame
         state.health = 100;
         state.money = 100;
-        state.addGameObject(new Background());  // Add one background object to our list
-        state.addGameObject(new Snail());  // Add one snail to our list
+        state.addGameObject(new Background(state, this));  // Add one background object to our list
+        state.addGameObject(new Snail(state, this));  // Add one snail to our list
         state.finishFrame();    // Mark the next frame as ready
         view.repaint();           // Draw it.
         

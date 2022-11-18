@@ -12,12 +12,14 @@ import java.awt.Point;
 public class Snail extends GameObject{
 
     private double percentage;
-    
-    public Snail() 
+        
+    public Snail(State state, Control control) 
     {
         percentage = 0;
         isVisible = true;
         isExpired = false;
+        this.state = state;
+        this.control = control;
     }
 
 	@Override
@@ -27,7 +29,7 @@ public class Snail extends GameObject{
 	}
 
 	@Override
-	public void draw(Graphics g, Control control) 
+	public void draw(Graphics g) 
 	{
         Point loc = control.getPath().convertToCoordinates(percentage);
         g.drawImage(control.loadImage("snail.png"), loc.x, loc.y, null);

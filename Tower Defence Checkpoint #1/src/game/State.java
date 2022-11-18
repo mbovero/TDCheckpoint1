@@ -46,18 +46,18 @@ public class State {
      */
     public void finishFrame ()
     {
-        for (int i=0; i<currentFrameGameObjects.size(); i++)
-        {
-            GameObject go = currentFrameGameObjects.get(i);
-                if (go.isExpired() == true && go.< 1)
-                    nextFrameGameObjects.remove(go);
-                else if (go.isExpired() == true && go.getPercentage() >= 1)
-                {
-                        nextFrameGameObjects.remove(go);
-                        nextFrameGameObjects.add(new Snail());
-                        loseHealth();
-                }
-        }
+//        for (int i=0; i<currentFrameGameObjects.size(); i++)
+//        {
+//            GameObject go = currentFrameGameObjects.get(i);
+//                if (go.isExpired() == true && go.< 1)
+//                    nextFrameGameObjects.remove(go);
+//                else if (go.isExpired() == true && go.getPercentage() >= 1)
+//                {
+//                        nextFrameGameObjects.remove(go);
+//                        nextFrameGameObjects.add(new Snail());
+//                        loseHealth();
+//                }
+//        }
         currentFrameGameObjects = nextFrameGameObjects;
         nextFrameGameObjects = null;  // PJ added this -- it makes it clear there is only a current list now.
     }
