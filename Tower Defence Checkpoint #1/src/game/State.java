@@ -15,6 +15,7 @@ public class State {
 	List<GameObject> nextFrameGameObjects;
     int health;
     int money;
+    int score;
 	
     public State()
     {
@@ -49,18 +50,7 @@ public class State {
     	for (GameObject go: currentFrameGameObjects)
     		if (go.isExpired)
     			nextFrameGameObjects.remove(go);
-//        for (int i=0; i<currentFrameGameObjects.size(); i++)
-//        {
-//            GameObject go = currentFrameGameObjects.get(i);
-//                if (go.isExpired() == true && go.< 1)
-//                    nextFrameGameObjects.remove(go);
-//                else if (go.isExpired() == true && go.getPercentage() >= 1)
-//                {
-//                        nextFrameGameObjects.remove(go);
-//                        nextFrameGameObjects.add(new Snail());
-//                        loseHealth();
-//                }
-//        }
+    	//System.out.println(nextFrameGameObjects);	//To test if enemy was removed at end of path
         currentFrameGameObjects = nextFrameGameObjects;
         nextFrameGameObjects = null;  // PJ added this -- it makes it clear there is only a current list now.
     }
@@ -80,38 +70,40 @@ public class State {
      *
      * @return health currently held by the user
      */
-    public int getHealth() 
-    {
-    	return this.health;
-    }
+    public int getHealth() {return this.health;}
+
+    /**
+     * When called, this method decreases the player's health
+     * 
+     * @param i the amount of health to be added or removed
+     */
+    public void changeHealth(int i) {health += i;}
 
     /**
      * Accessor method to gets the amount of money held by the user
      *
      * @return money currently held by the player
      */
-    public int getMoney() 
-    {
-    	return this.money;
-    }
+    public int getMoney() {return this.money;}
 
     /**
      * When called, this method changes the player's money
      * 
      * @param i the amount of money to be added or removed
      */
-    public void changeMoney(int i)
-    {
-    	money += i;
-    }
+    public void changeMoney(int i) {money += i;}
+    
+    /**
+     * Accessor method to gets the user's score
+     *
+     * @return the player's score
+     */
+    public int getScore() {return this.score;}
 
     /**
-     * When called, this method decreases the player's health
+     * When called, this method changes the player's score
      * 
-     * @param i the amount of health to be subtracted
+     * @param i the points to be added to or removed from score
      */
-    public void loseHealth(int i)
-    {
-    	health -= i;
-    }
+    public void changeScore(int i) {score += i;}
 }

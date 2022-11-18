@@ -29,7 +29,9 @@ public class Snail extends GameObject{
         {
         	isExpired = true;
         	isVisible = false;
-        	state.loseHealth(1);
+        	state.changeHealth(-1);								// Remove health
+            state.addGameObject(new Snail(state, control));  	// Add another enemy
+            //System.out.println(state.health);					// Testing for properly subtracting health
         }
 		
 		percentage += 0.0025;
