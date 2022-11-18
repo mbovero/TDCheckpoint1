@@ -42,13 +42,21 @@ public class State {
     
     /**
      * Replaces the current frame list with the list we prepared for the next frame
+     *
      */
     public void finishFrame ()
     {
-        for (GameObject go : currentFrameGameObjects)
+        for (int i=0; i<currentFrameGameObjects.size(); i++)
         {
-            if (go.isExpired()==true)
-                currentFrameGameObjects.remove(go);
+            GameObject go = currentFrameGameObjects.get(i);
+                if (go.isExpired() == true && go.< 1)
+                    nextFrameGameObjects.remove(go);
+                else if (go.isExpired() == true && go.getPercentage() >= 1)
+                {
+                        nextFrameGameObjects.remove(go);
+                        nextFrameGameObjects.add(new Snail());
+                        loseHealth();
+                }
         }
         currentFrameGameObjects = nextFrameGameObjects;
         nextFrameGameObjects = null;  // PJ added this -- it makes it clear there is only a current list now.
@@ -82,4 +90,9 @@ public class State {
     {
 
     }
+
+    /**
+     * When called, this method decreases the player's health
+     */
+    public void loseHealth(){health -= 1;}
 }

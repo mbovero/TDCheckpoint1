@@ -25,7 +25,7 @@ public class Background extends GameObject{
 	@Override
 	public void draw(Graphics g, Control control) 
 	{
-        g.drawImage(control.getImage("path_2a.jpg"), 0, 0, null);	
+        g.drawImage(control.loadImage("path_2a.jpg"), 0, 0, null);
 	}
 
 }

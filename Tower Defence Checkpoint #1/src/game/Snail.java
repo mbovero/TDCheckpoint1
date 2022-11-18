@@ -30,7 +30,6 @@ public class Snail extends GameObject{
 	public void draw(Graphics g, Control control) 
 	{
         Point loc = control.getPath().convertToCoordinates(percentage);
-        g.drawImage(control.getImage("snail.png"), loc.x, loc.y, null);	
+        g.drawImage(control.loadImage("snail.png"), loc.x, loc.y, null);
     }
-
 }
