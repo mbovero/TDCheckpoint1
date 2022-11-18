@@ -46,6 +46,9 @@ public class State {
      */
     public void finishFrame ()
     {
+    	for (GameObject go: currentFrameGameObjects)
+    		if (go.isExpired)
+    			nextFrameGameObjects.remove(go);
 //        for (int i=0; i<currentFrameGameObjects.size(); i++)
 //        {
 //            GameObject go = currentFrameGameObjects.get(i);
@@ -73,26 +76,42 @@ public class State {
     }
 
     /**
-     * Gets the amount of health held by the user
+     * Accessor method to gets the amount of health held by the user
      *
      * @return health currently held by the user
      */
-    public int getHealth() {return this.health;}
+    public int getHealth() 
+    {
+    	return this.health;
+    }
 
     /**
-     * Gets the amount of money held by the user
+     * Accessor method to gets the amount of money held by the user
      *
      * @return money currently held by the player
      */
-    public int getMoney() {return this.money;}
-
-    public void changeMoney()
+    public int getMoney() 
     {
+    	return this.money;
+    }
 
+    /**
+     * When called, this method changes the player's money
+     * 
+     * @param i the amount of money to be added or removed
+     */
+    public void changeMoney(int i)
+    {
+    	money += i;
     }
 
     /**
      * When called, this method decreases the player's health
+     * 
+     * @param i the amount of health to be subtracted
      */
-    public void loseHealth(){health -= 1;}
+    public void loseHealth(int i)
+    {
+    	health -= i;
+    }
 }

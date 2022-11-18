@@ -25,7 +25,14 @@ public class Snail extends GameObject{
 	@Override
 	public void update(double elapsedTime) 
 	{
-        percentage += 0.0025;
+        if (percentage >= 1)
+        {
+        	isExpired = true;
+        	isVisible = false;
+        	state.loseHealth(1);
+        }
+		
+		percentage += 0.0025;
 	}
 
 	@Override

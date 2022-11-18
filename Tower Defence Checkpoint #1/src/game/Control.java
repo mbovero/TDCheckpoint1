@@ -84,8 +84,11 @@ public class Control implements Runnable, ActionListener {
 
     public BufferedImage loadImage (String filekey)
     {
-        if (!(images.containsKey(filekey))) //Checks if images map includes the filekey
-            getImage(filekey);  //If there is no key, this creates a new key with an associated image
+        if (!images.containsKey(filekey)) //Checks if images map includes the filekey
+        {
+            System.out.println("getting image...");
+        	getImage(filekey);  //If there is no key, this creates a new key with an associated image
+        }
         return images.get(filekey);
     }
 
