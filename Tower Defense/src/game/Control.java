@@ -6,8 +6,7 @@
  */
 package game;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -20,10 +19,13 @@ import javax.swing.Timer;
 
 import path.Path;
 
-public class Control implements Runnable, ActionListener {
+public class Control implements Runnable, ActionListener, MouseListener, MouseMotionListener {
 
     State state;
     View  view;
+
+    int mouseX;
+    int mouseY;
     private Path path;
     HashMap<String, BufferedImage> images;
 	
@@ -49,18 +51,20 @@ public class Control implements Runnable, ActionListener {
 	    view = new View(this, state);
         images = new HashMap<>();
 
-        view.addMouseListener(view);
-        view.addMouseMotionListener(view);
+        view.addMouseListener(this);
+        view.addMouseMotionListener(this);
 
 	    state.startFrame();  // Prepares the creation of the 'next' frame
         state.health = 100;
         state.money = 100;
         state.score = 0;
-        state.addGameObject(new Menu(state, this));
-        state.addGameObject(new PurchaseTower(state, this));
 
         state.addGameObject(new Background(state, this));  // Add one background object to our list
         state.addGameObject(new Snail(state, this));  // Add one snail to our list
+
+        state.addGameObject(new Menu(state, this));
+        state.addGameObject(new PurchaseTower(state, this));
+
         state.finishFrame();    // Mark the next frame as ready
         view.repaint();           // Draw it.
         
@@ -108,5 +112,63 @@ public class Control implements Runnable, ActionListener {
         state.finishFrame();
         view.repaint();
 	}
-	
+
+    @Override
+    public void mouseMoved(MouseEvent e)
+    {
+        mouseX = e.getX();
+        mouseY = e.getY();
+
+        //System.out.println("X:" + mouseX + " Y:" + mouseY);
+    }
+
+    public int getMouseX()
+    {
+        return mouseX;
+    }
+
+    public int getMouseY()
+    {
+        return mouseY;
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e)
+    {
+        List<GameObject> list = state.getFrameObjects();
+
+        for (GameObject go: list)
+            if (go instanceof Clickable)
+            {
+                Clickable c = (Clickable) go;
+                if (c.consumeClick(mouseX, mouseY))
+                    break;
+            }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
+    }
+
 }

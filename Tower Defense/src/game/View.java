@@ -12,20 +12,19 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class View extends JPanel implements MouseListener, MouseMotionListener {
+public class View extends JPanel {
 
-	Control control;
-	State state;
-    int mouseX;
-    int mouseY;
+    Control control;
+    State state;
 
-	public View(Control control, State state)
-	{
-		this.control = control;
-		this.state = state;
+    public View(Control control, State state) {
+        this.control = control;
+        this.state = state;
 
         JFrame f = new JFrame("Miles's & Kirt's Tower Defense 2022");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,64 +34,23 @@ public class View extends JPanel implements MouseListener, MouseMotionListener {
         f.pack();
         f.setLocationRelativeTo(null);
         f.setVisible(true);
-	}
+    }
 
-	public void paint(Graphics g)
-	{
-		//System.out.println("repainting...");
+    public void paint(Graphics g) {
+        //System.out.println("repainting...");
 
-		// Loop over the list of the current frame's game objects (from the game State object) and draw them
+        // Loop over the list of the current frame's game objects (from the game State object) and draw them
+        List<GameObject> drawTop = new ArrayList<GameObject>();
         for (GameObject go : state.getFrameObjects())
-            if (go.isVisible() && !go.isExpired())
+            if (go.isVisible() && !go.isExpired() && go instanceof Clickable || go instanceof Menu)
+                drawTop.add(go);
+
+        for (GameObject go : state.getFrameObjects())
+            if (go.isVisible() && !go.isExpired() && !(go instanceof Clickable)  && !(go instanceof Menu))
                 go.draw(g);
-	}
 
-    public int getMouseX()
-    {
-        return mouseX;
+        for (GameObject go : drawTop)
+            go.draw(g);
     }
 
-    public int getMouseY()
-    {
-        return mouseY;
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e)
-    {
-        mouseX = e.getX();
-        mouseY = e.getY();
-
-        //System.out.println("X:" + mouseX + " Y:" + mouseY);
-    }
 }
