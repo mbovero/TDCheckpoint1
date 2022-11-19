@@ -76,7 +76,7 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
 	{
 		return path;
 	}
-	
+
     public void getImage (String filename)
     {
         try
