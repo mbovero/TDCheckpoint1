@@ -104,7 +104,7 @@ public class PathEditor extends JPanel implements Runnable, MouseListener, Actio
         // Load backdrop path image
         try 
         {
-            backdrop = javax.imageio.ImageIO.read(new File("path_2.jpg"));
+            backdrop = javax.imageio.ImageIO.read(new File("Tower Defense/path_2.jpg"));
         } 
         catch (IOException e) 
         {

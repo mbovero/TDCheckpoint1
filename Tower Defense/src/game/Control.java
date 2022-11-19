@@ -49,10 +49,16 @@ public class Control implements Runnable, ActionListener {
 	    view = new View(this, state);
         images = new HashMap<>();
 
+        view.addMouseListener(view);
+        view.addMouseMotionListener(view);
+
 	    state.startFrame();  // Prepares the creation of the 'next' frame
         state.health = 100;
         state.money = 100;
         state.score = 0;
+        state.addGameObject(new Menu(state, this));
+        state.addGameObject(new PurchaseTower(state, this));
+
         state.addGameObject(new Background(state, this));  // Add one background object to our list
         state.addGameObject(new Snail(state, this));  // Add one snail to our list
         state.finishFrame();    // Mark the next frame as ready

@@ -8,10 +8,8 @@
 package path;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -20,7 +18,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JButton;
@@ -104,7 +101,7 @@ public class PathEditor extends JPanel implements Runnable, MouseListener, Actio
         // Load backdrop path image
         try 
         {
-            backdrop = javax.imageio.ImageIO.read(new File("path_2.jpg"));
+            backdrop = javax.imageio.ImageIO.read(new File("Tower Defense/path_2.jpg"));
         } 
         catch (IOException e) 
         {
