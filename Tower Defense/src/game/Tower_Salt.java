@@ -1,5 +1,5 @@
 /**
- * This class holds the information for interacting and displaying
+ * This class holds the information for interacting with and displaying
  * the Tower_Salt object.
  *
  * @author Miles Bovero, Kirt Robinson
@@ -29,7 +29,7 @@ public class Tower_Salt extends GameObject implements Clickable
 
     /**
      * Method that stores the new x and y coordinates of the
-     * mouse on screen.
+     * mouse on screen and moves the tower accordingly.
      *
      * @param elapsedTime
      */
@@ -55,11 +55,11 @@ public class Tower_Salt extends GameObject implements Clickable
     }
 
     /**
-     * Method that updates the isMoving value to false when it is true
-     * and does nothing when it is false.
+     * Method that allows for the placement of the tower by updating the
+     * isMoving value to false when it is true.
      *
-     * @param mouseX
-     * @param mouseY
+     * @param mouseX the mouse's x position
+     * @param mouseY the mouse's y position
      * @return boolean value that states if the object is moving
      */
     @Override

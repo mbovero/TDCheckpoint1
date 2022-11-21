@@ -51,7 +51,6 @@ public class State {
     			nextFrameGameObjects.remove(go);
     	//System.out.println(nextFrameGameObjects);	//To test if enemy was removed at end of path
         currentFrameGameObjects = nextFrameGameObjects;
-        //nextFrameGameObjects = null;  // PJ added this -- it makes it clear there is only a current list now.
     }
     
     /**

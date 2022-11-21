@@ -1,5 +1,5 @@
 /**
- * This is an abstract class that is used to set up GameObject objects. It gives
+ * This is an abstract class that is used to set up GameObject objects. It provides
  * the GameObject objects the required methods.
  *
  * @author Miles Bovero, Kirt Robinson

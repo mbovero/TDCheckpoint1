@@ -49,11 +49,12 @@ public class PurchaseTower extends GameObject implements Clickable{
     }
 
     /**
-     * Method that checks if the mouse is in a certain range, then
-     * adds a new Tower_Salt GameObject to state.
+     * Method that checks if the mouse is in a certain range - when clicked - then
+     * allows the player to place a new salt tower by adding a new Tower_Salt GameObject 
+     * through state.
      *
-     * @param mouseX
-     * @param mouseY
+     * @param mouseX the mouse's x position
+     * @param mouseY the mouse's y position
      * @return a boolean value
      */
     @Override

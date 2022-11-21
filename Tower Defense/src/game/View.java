@@ -39,9 +39,9 @@ public class View extends JPanel {
 
     /**
      * Method that draws each object in the Tower Defense game so
-     * that it can be visible.
+     * that it is visible.
      *
-     * @param g  the <code>Graphics</code> context in which to paint
+     * @param g  the Graphics context in which to paint
      */
     public void paint(Graphics g) {
         //System.out.println("repainting...");

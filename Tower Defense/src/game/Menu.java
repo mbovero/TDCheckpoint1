@@ -1,7 +1,7 @@
 /**
  * This class holds the information for displaying the sidebar menu
  * that holds towers available to purchase. It also displays the
- * health, money, and score the player currently has
+ * health, money, and score the player currently holds.
  *
  * @author Miles Bovero, Kirt Robinson
  * @version November, 20, 2022

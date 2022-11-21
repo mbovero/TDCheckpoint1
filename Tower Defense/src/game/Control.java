@@ -77,7 +77,7 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
 	}
 
     /**
-     * Method gets the path object held inside the object it is called on.
+     * Method gets the path and returns it for further use.
      *
      * @return path object
      */
@@ -87,7 +87,8 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
 	}
 
     /**
-     * Method that places a desired image file inside the images map array.
+     * Method that places a desired image file inside the images map
+     * to efficiently be used later.
      *
      * @param filename the full name of a file to call
      */
@@ -108,12 +109,12 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
     }
 
     /**
-     * Method that calls to the images map array to return an image. This
-     * method also allows for the creation of a new map array key if there
+     * Method that calls to the images map to return an image. This
+     * method also allows for the creation of a new map key if there
      * is no key previously stored.
      *
-     * @param filekey the full name of a file to call inside the images map array
-     * @return a buffered image from inside the images map array
+     * @param filekey the full name of a file to call inside the images map
+     * @return a buffered image from inside the images map
      */
     public BufferedImage loadImage (String filekey)
     {
@@ -176,7 +177,7 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
     }
 
     /**
-     * Listener method that *(gets all GameObjects before a moving and clickable GameObject)
+     * Listener method that detects when clickable objects are clicked and responds accordingly.
      *
      * @param e the event to be processed
      */

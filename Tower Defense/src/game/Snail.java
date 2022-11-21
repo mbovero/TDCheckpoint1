@@ -26,8 +26,8 @@ public class Snail extends GameObject{
     /**
      * If the Snail object is at the end of the path, this method updates
      * the current frame state of the player's health, the visibility of the
-     * Snail object, the expired value of the Snail object, and the percentage
-     * along the path the Snail object is.
+     * Snail object, and the expired value of the Snail object. Regardless, 
+     * the percentage which the Snail object is along the path is increased.
      *
      * @param elapsedTime
      */
