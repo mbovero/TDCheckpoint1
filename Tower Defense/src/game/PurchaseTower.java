@@ -1,9 +1,17 @@
+/**
+ * This class hold the information for displaying and interacting with a salt
+ * tower that is available to buy in the sidebar menu.
+ *
+ * @author Miles Bovero, Kirt Robinson
+ * @version November, 20, 2022
+ */
 package game;
 
 import java.awt.*;
 
 public class PurchaseTower extends GameObject implements Clickable{
 
+    //Constructor
     public PurchaseTower (State state, Control control)
     {
         isVisible = true;
@@ -13,11 +21,18 @@ public class PurchaseTower extends GameObject implements Clickable{
         this.control = control;
     }
 
+    //Unused method
     @Override
     public void update(double elapsedTime) {
 
     }
 
+    /**
+     * Method that draws the icon for the Tower_Salt in the
+     * sidebar menu.
+     *
+     * @param g graphics object to draw onto
+     */
     @Override
     public void draw(Graphics g)
     {
@@ -33,6 +48,14 @@ public class PurchaseTower extends GameObject implements Clickable{
 
     }
 
+    /**
+     * Method that checks if the mouse is in a certain range, then
+     * adds a new Tower_Salt GameObject to state.
+     *
+     * @param mouseX
+     * @param mouseY
+     * @return a boolean value
+     */
     @Override
     public boolean consumeClick(int mouseX, int mouseY)
     {

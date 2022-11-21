@@ -2,7 +2,7 @@
  * This class creates and allows for interactions and use of a Background object.
  *
  * @author Miles Bovero, Kirt Robinson
- * @Version November 14, 2022
+ * @Version November 20, 2022
  */
 package game;
 
@@ -10,7 +10,7 @@ import java.awt.Graphics;
 
 public class Background extends GameObject{
 
-	
+	//Constructor
 	public Background (State state, Control control) 
 	{
         isVisible = true;
@@ -18,13 +18,19 @@ public class Background extends GameObject{
         this.state = state;
         this.control = control;
 	}
-	
+
+	//Unused method
 	@Override
 	public void update(double elapsedTime) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * Method that draws the background image.
+	 *
+	 * @param g a graphics object to draw onto
+	 */
 	@Override
 	public void draw(Graphics g) 
 	{

@@ -3,7 +3,7 @@
  * on a background. The program also allows for the saving and loading of paths.
  * 
  * @author Miles Bovero, Kirt Robinson
- * @version November 8, 2022
+ * @version November 20, 2022
  */
 package path;
 
@@ -120,6 +120,7 @@ public class PathEditor extends JPanel implements Runnable, MouseListener, Actio
     	path.draw(g);
     }
 
+	//Unused method
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -141,18 +142,21 @@ public class PathEditor extends JPanel implements Runnable, MouseListener, Actio
 		repaint();
 	}
 
+	//Unused method
 	@Override
 	public void mouseReleased(MouseEvent e) 
 	{
 		//System.out.println("Added new point at: " + e.getX() + " " + e.getY());
 	}
 
+	//Unused method
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	//Unused method
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -232,7 +236,11 @@ public class PathEditor extends JPanel implements Runnable, MouseListener, Actio
 			System.out.println("Error saving.");
 		}
 	}
-	
+
+	/**
+	 * Method that creates a new Path object to paint and
+	 * replace the previous Path object.
+	 */
 	private void clearPath() {
 		path = new Path();
 		repaint();

@@ -1,9 +1,18 @@
+/**
+ * This class holds the information for displaying the sidebar menu
+ * that holds towers available to purchase. It also displays the
+ * health, money, and score the player currently has
+ *
+ * @author Miles Bovero, Kirt Robinson
+ * @version November, 20, 2022
+ */
 package game;
 
 import java.awt.*;
 
 public class Menu extends GameObject{
 
+    //Constructor
     public Menu (State state, Control control)
     {
         isVisible = true;
@@ -13,11 +22,19 @@ public class Menu extends GameObject{
         this.control = control;
     }
 
+    /**
+     * Unused method.
+     * @param elapsedTime
+     */
     @Override
     public void update(double elapsedTime) {
 
     }
 
+    /**
+     * Method that draws the menu.
+     * @param g graphics object to draw over
+     */
     @Override
     public void draw(Graphics g)
     {
@@ -42,9 +59,5 @@ public class Menu extends GameObject{
             // Score
         g.setColor(Color.yellow);
         g.drawString("Score: " + state.getScore(), 425, 633);
-
-
-
-
     }
 }

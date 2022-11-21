@@ -2,7 +2,7 @@
  *This class holds the current properties of the game objects in the Tower Defense game.
  *
  * @author Miles Bovero, Kirt Robinson
- * @version November 14, 2022
+ * @version November 20, 2022
  */
 package game;
 
@@ -42,8 +42,7 @@ public class State {
     }
     
     /**
-     * Replaces the current frame list with the list we prepared for the next frame
-     *
+     * Replaces the current frame list with the list we prepared for the next frame.
      */
     public void finishFrame ()
     {
@@ -56,7 +55,7 @@ public class State {
     }
     
     /**
-     * Adds a game object to the next frame of the game
+     * Adds a game object to the next frame of the game.
      * 
      * @param go the game object to be added
      */
@@ -66,42 +65,42 @@ public class State {
     }
 
     /**
-     * Accessor method to gets the amount of health held by the user
+     * Accessor method to gets the amount of health held by the user.
      *
      * @return health currently held by the user
      */
     public int getHealth() {return this.health;}
 
     /**
-     * When called, this method decreases the player's health
+     * Method that changes the player's health.
      * 
      * @param i the amount of health to be added or removed
      */
     public void changeHealth(int i) {health += i;}
 
     /**
-     * Accessor method to gets the amount of money held by the user
+     * Accessor method to gets the amount of money held by the user.
      *
      * @return money currently held by the player
      */
     public int getMoney() {return this.money;}
 
     /**
-     * When called, this method changes the player's money
+     * Method that changes the player's money.
      * 
      * @param i the amount of money to be added or removed
      */
     public void changeMoney(int i) {money += i;}
     
     /**
-     * Accessor method to gets the user's score
+     * Accessor method to gets the user's score.
      *
      * @return the player's score
      */
     public int getScore() {return this.score;}
 
     /**
-     * When called, this method changes the player's score
+     * Method that changes the player's score.
      * 
      * @param i the points to be added to or removed from score
      */

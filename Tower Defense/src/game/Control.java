@@ -2,7 +2,7 @@
  * This class manages and sets up all aspects of the Tower Defense game.
  *
  * @author Miles Bovero, Kirt Robinson
- * @version November 14, 2022
+ * @version November 20, 2022
  */
 package game;
 
@@ -28,13 +28,17 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
     int mouseY;
     private Path path;
     HashMap<String, BufferedImage> images;
-	
+
+    //Constructor
 	public Control()
 	{
 		run();
 	}
 
-	@Override
+    /**
+     * Method that sets up and runs the Tower Defense game.
+     */
+    @Override
 	public void run() 
 	{	
 		try 
@@ -72,11 +76,21 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
         t.start();
 	}
 
+    /**
+     * Method gets the path object held inside the object it is called on.
+     *
+     * @return path object
+     */
 	public Path getPath()
 	{
 		return path;
 	}
 
+    /**
+     * Method that places a desired image file inside the images map array.
+     *
+     * @param filename the full name of a file to call
+     */
     public void getImage (String filename)
     {
         try
@@ -93,6 +107,14 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
         }
     }
 
+    /**
+     * Method that calls to the images map array to return an image. This
+     * method also allows for the creation of a new map array key if there
+     * is no key previously stored.
+     *
+     * @param filekey the full name of a file to call inside the images map array
+     * @return a buffered image from inside the images map array
+     */
     public BufferedImage loadImage (String filekey)
     {
         if (!images.containsKey(filekey)) //Checks if images map includes the filekey
@@ -103,6 +125,11 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
         return images.get(filekey);
     }
 
+    /**
+     * Listener method to update the frame when an event occurs.
+     *
+     * @param e the event to be processed
+     */
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
@@ -113,6 +140,12 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
         view.repaint();
 	}
 
+    /**
+     * Listener method that updates the current mouse coordinates when
+     * the mouse is moved.
+     *
+     * @param e the event to be processed
+     */
     @Override
     public void mouseMoved(MouseEvent e)
     {
@@ -122,21 +155,35 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
         //System.out.println("X:" + mouseX + " Y:" + mouseY);
     }
 
+    /**
+     * Accessor method that returns the current stored X-coordinate of the mouse on the screen.
+     *
+     * @return int x-coordinate of the mouse
+     */
     public int getMouseX()
     {
         return mouseX;
     }
 
+    /**
+     *Accessor method that returns the current stored Y-coordinate of the mouse on the screen.
+     *
+     * @return int y-coordinate of the mouse
+     */
     public int getMouseY()
     {
         return mouseY;
     }
 
+    /**
+     * Listener method that *(gets all GameObjects before a moving and clickable GameObject)
+     *
+     * @param e the event to be processed
+     */
     @Override
     public void mouseReleased(MouseEvent e)
     {
         List<GameObject> list = state.getFrameObjects();
-
         for (GameObject go: list)
             if (go instanceof Clickable)
             {
@@ -146,26 +193,31 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
             }
     }
 
+    //Unused method
     @Override
     public void mouseClicked(MouseEvent e) {
 
     }
 
+    //Unused method
     @Override
     public void mousePressed(MouseEvent e) {
 
     }
 
+    //Unused method
     @Override
     public void mouseEntered(MouseEvent e) {
 
     }
 
+    //Unused method
     @Override
     public void mouseExited(MouseEvent e) {
 
     }
 
+    //Unused method
     @Override
     public void mouseDragged(MouseEvent e) {
 

@@ -4,7 +4,7 @@
  * formatting the object to a string format, and drawing such objects using methods.
  * 
  * @author Miles Bovero, Kirt Robinson
- * @version November 8, 2022
+ * @version November 20, 2022
  */
 package path;
 

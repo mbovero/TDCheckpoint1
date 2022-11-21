@@ -2,7 +2,7 @@
  * This class sets up and allows for the graphical objects to be seen in the Tower Defense game.
  *
  * @author Miles Bovero, Kirt Robinson
- * @version November 14, 2022
+ * @version November 20, 2022
  */
 package game;
 
@@ -22,6 +22,7 @@ public class View extends JPanel {
     Control control;
     State state;
 
+    //Constructor
     public View(Control control, State state) {
         this.control = control;
         this.state = state;
@@ -36,19 +37,24 @@ public class View extends JPanel {
         f.setVisible(true);
     }
 
+    /**
+     * Method that draws each object in the Tower Defense game so
+     * that it can be visible.
+     *
+     * @param g  the <code>Graphics</code> context in which to paint
+     */
     public void paint(Graphics g) {
         //System.out.println("repainting...");
 
         // Loop over the list of the current frame's game objects (from the game State object) and draw them
         List<GameObject> drawTop = new ArrayList<GameObject>();
+        //Adds all GameObjects that should be visible on the top layer to an array to be drawn later.
         for (GameObject go : state.getFrameObjects())
             if (go.isVisible() && !go.isExpired() && go instanceof Clickable || go instanceof Menu)
                 drawTop.add(go);
-
         for (GameObject go : state.getFrameObjects())
             if (go.isVisible() && !go.isExpired() && !(go instanceof Clickable)  && !(go instanceof Menu))
                 go.draw(g);
-
         for (GameObject go : drawTop)
             go.draw(g);
     }
