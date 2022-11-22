@@ -21,11 +21,11 @@ import path.Path;
 
 public class Control implements Runnable, ActionListener, MouseListener, MouseMotionListener {
 
-    State state;
-    View  view;
+    protected State state;
+    protected View  view;
 
-    int mouseX;
-    int mouseY;
+    protected int mouseX;
+    protected int mouseY;
     private Path path;
     HashMap<String, BufferedImage> images;
 
@@ -51,7 +51,7 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
 			System.out.println("Error occurred while loading path.");
 		}
 	        
-		state = new State();
+		state = new State(this);
 	    view = new View(this, state);
         images = new HashMap<>();
 
@@ -135,15 +135,12 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
+
+
         state.startFrame();
-        if (state.health > 0)
+        if (!state.gameOver)
             for (GameObject go : state.getFrameObjects())
-                go.update(0);
-        else if (state.health <= 0 && !state.gameOver)
-        {
-            state.gameOver = true;
-            state.addGameObject(new GameOver(state, this));  	// Display Game Over
-        }
+                go.update(state.elapsedTime);
         state.finishFrame();
         view.repaint();
 	}

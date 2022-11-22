@@ -19,8 +19,8 @@ import javax.swing.JPanel;
 
 public class View extends JPanel {
 
-    Control control;
-    State state;
+    protected Control control;
+    protected State state;
 
     //Constructor
     public View(Control control, State state) {

@@ -39,7 +39,8 @@ public class Snail extends GameObject{
         	isExpired = true;
         	isVisible = false;
         	state.changeHealth(-1);								// Remove health
-            state.addGameObject(new Snail(state, control));  	// Add another enemy
+            if (!state.gameOver)
+                state.addGameObject(new Snail(state, control));  	// Add another enemy
             //System.out.println(state.health);					// Testing for properly subtracting health
         }
 		

@@ -11,16 +11,26 @@ import java.util.List;
 
 public class State {
 
-	List<GameObject> currentFrameGameObjects;
-	List<GameObject> nextFrameGameObjects;
-    int health;
-    int money;
-    int score;
-    boolean gameOver;
-	
-    public State()
+    protected List<GameObject> currentFrameGameObjects;
+    protected List<GameObject> nextFrameGameObjects;
+    protected int health;
+    protected int money;
+    protected  int score;
+    protected boolean gameOver;
+    protected Control control;
+
+    protected long elapsedTime;
+    protected long totalTime;
+    private long startTime = System.currentTimeMillis()/1000;
+    private long lastStartTime = startTime;
+    private long currentStartTime;
+
+
+    // Constructor
+    public State(Control control)
     {
         currentFrameGameObjects = new ArrayList<GameObject>();
+        this.control = control;
     }
 	
     /**
@@ -38,6 +48,11 @@ public class State {
      */
     public void startFrame ()
     {
+        currentStartTime = System.currentTimeMillis()/1000;
+        elapsedTime = currentStartTime - lastStartTime;
+        lastStartTime = currentStartTime;
+        totalTime = currentStartTime - startTime;
+
         nextFrameGameObjects = new ArrayList<GameObject>();    // Creates empty list
         nextFrameGameObjects.addAll(currentFrameGameObjects);  // Add all the current ones to the new list.  This is more clear
     }
@@ -76,7 +91,15 @@ public class State {
      * 
      * @param i the amount of health to be added or removed
      */
-    public void changeHealth(int i) {health += i;}
+    public void changeHealth(int i)
+    {
+        health += i;
+        if (health <= 0)
+        {
+            gameOver = true;
+            addGameObject(new GameOver(this, control));  	// Display Game Over
+        }
+    }
 
     /**
      * Accessor method to gets the amount of money held by the user.
