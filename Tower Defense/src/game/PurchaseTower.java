@@ -61,7 +61,8 @@ public class PurchaseTower extends GameObject implements Clickable{
     public boolean consumeClick(int mouseX, int mouseY)
     {
         if (mouseX >= 630 && mouseX <= 690 &&
-            mouseY >= 75 && mouseY <= 135)
+            mouseY >= 75 && mouseY <= 135 &&
+            !state.gameOver)
         {
             state.addGameObject(new Tower_Salt(state, control, true));
             return true;

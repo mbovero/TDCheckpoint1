@@ -59,9 +59,10 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
         view.addMouseMotionListener(this);
 
 	    state.startFrame();  // Prepares the creation of the 'next' frame
-        state.health = 100;
+        state.health = 1;
         state.money = 100;
         state.score = 0;
+        state.gameOver = false;
 
         state.addGameObject(new Background(state, this));  // Add one background object to our list
         state.addGameObject(new Snail(state, this));  // Add one snail to our list
@@ -135,8 +136,14 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
 	public void actionPerformed(ActionEvent e) 
 	{
         state.startFrame();
-        for (GameObject go : state.getFrameObjects())
-            go.update(0);    
+        if (state.health > 0)
+            for (GameObject go : state.getFrameObjects())
+                go.update(0);
+        else if (state.health <= 0 && !state.gameOver)
+        {
+            state.gameOver = true;
+            state.addGameObject(new GameOver(state, this));  	// Display Game Over
+        }
         state.finishFrame();
         view.repaint();
 	}

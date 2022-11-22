@@ -16,6 +16,7 @@ public class State {
     int health;
     int money;
     int score;
+    boolean gameOver;
 	
     public State()
     {
