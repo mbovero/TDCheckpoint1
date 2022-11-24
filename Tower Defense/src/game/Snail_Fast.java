@@ -6,15 +6,14 @@
  */
 package game;
 
-import java.awt.Graphics;
-import java.awt.Point;
+import java.awt.*;
 
-public class Snail extends GameObject{
+public class Snail_Fast extends GameObject{
 
     private double percentage;
 
     //Constructor
-    public Snail(State state, Control control) 
+    public Snail_Fast(State state, Control control)
     {
         percentage = 0;
         isVisible = true;
@@ -40,11 +39,11 @@ public class Snail extends GameObject{
         	isVisible = false;
         	state.changeHealth(-1);								// Remove health
             if (!state.gameOver)
-                state.addGameObject(new Snail(state, control));  	// Add another enemy
+                state.addGameObject(new Snail_Fast(state, control));  	// Add another enemy
             //System.out.println(state.health);					// Testing for properly subtracting health
         }
 		
-		percentage += 0.05 * elapsedTime;
+		percentage += 0.1 * elapsedTime;
 	}
 
     /**
@@ -56,6 +55,6 @@ public class Snail extends GameObject{
 	public void draw(Graphics g) 
 	{
         Point loc = control.getPath().convertToCoordinates(percentage);
-        g.drawImage(control.loadImage("snail.png"), loc.x, loc.y, null);
+        g.drawImage(control.loadImage("snail_fast.png"), loc.x, loc.y, null);
     }
 }

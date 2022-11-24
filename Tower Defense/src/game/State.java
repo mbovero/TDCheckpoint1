@@ -19,9 +19,9 @@ public class State {
     protected boolean gameOver;
     protected Control control;
 
-    protected long elapsedTime;
+    protected double elapsedTime;
     protected long totalTime;
-    private long startTime = System.currentTimeMillis()/1000;
+    private long startTime = System.currentTimeMillis();
     private long lastStartTime = startTime;
     private long currentStartTime;
 
@@ -48,12 +48,12 @@ public class State {
      */
     public void startFrame ()
     {
-        currentStartTime = System.currentTimeMillis()/1000;
-        elapsedTime = currentStartTime - lastStartTime;
+        currentStartTime = System.currentTimeMillis();
+        elapsedTime = ((double)(currentStartTime - lastStartTime))/1000;
         lastStartTime = currentStartTime;
-        totalTime = currentStartTime - startTime;
+        totalTime = (currentStartTime - startTime)/1000;
 
-        nextFrameGameObjects = new ArrayList<GameObject>();    // Creates empty list
+            nextFrameGameObjects = new ArrayList<GameObject>();    // Creates empty list
         nextFrameGameObjects.addAll(currentFrameGameObjects);  // Add all the current ones to the new list.  This is more clear
     }
     

@@ -29,6 +29,10 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
     private Path path;
     HashMap<String, BufferedImage> images;
 
+    private long lastSnailCycleComplete = 0;
+    private long lastSnailFastCycleComplete = 0;
+
+
     //Constructor
 	public Control()
 	{
@@ -59,7 +63,7 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
         view.addMouseMotionListener(this);
 
 	    state.startFrame();  // Prepares the creation of the 'next' frame
-        state.health = 1;
+        state.health = 6;
         state.money = 100;
         state.score = 0;
         state.gameOver = false;
@@ -135,11 +139,29 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
+        // Setup
+        List<GameObject> frameObjects = state.getFrameObjects();
+
+        // Systematic enemy generation
+        if ((state.totalTime - lastSnailCycleComplete) >= 5)           //Add another snail each 5 sec
+        {
+            System.out.println("Snail added at: " + state.totalTime + " seconds");
+            state.addGameObject(new Snail(state, this));
+            lastSnailCycleComplete = state.totalTime;
+        }
+        if ((state.totalTime - lastSnailFastCycleComplete) >= 15)           //Add another fast snail each 5 sec
+        {
+            System.out.println("Fast snail added at: " + state.totalTime + " seconds");
+            state.addGameObject(new Snail_Fast(state, this));
+            lastSnailFastCycleComplete = state.totalTime;
+        }
 
 
+
+        // Update objects and frames
         state.startFrame();
         if (!state.gameOver)
-            for (GameObject go : state.getFrameObjects())
+            for (GameObject go : frameObjects)
                 go.update(state.elapsedTime);
         state.finishFrame();
         view.repaint();
