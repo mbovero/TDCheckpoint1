@@ -143,19 +143,21 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
         List<GameObject> frameObjects = state.getFrameObjects();
 
         // Systematic enemy generation
-        if ((state.totalTime - lastSnailCycleComplete) >= 5)           //Add another snail each 5 sec
+        if(!state.gameOver)
         {
-            System.out.println("Snail added at: " + state.totalTime + " seconds");
-            state.addGameObject(new Snail(state, this));
-            lastSnailCycleComplete = state.totalTime;
+            if ((state.totalTime - lastSnailCycleComplete) >= 5)           //Add another snail each 5 sec
+            {
+                System.out.println("Snail added at: " + state.totalTime + " seconds");
+                state.addGameObject(new Snail(state, this));
+                lastSnailCycleComplete = state.totalTime;
+            }
+            if ((state.totalTime - lastSnailFastCycleComplete) >= 15)           //Add another fast snail each 15 sec
+            {
+                System.out.println("Fast snail added at: " + state.totalTime + " seconds");
+                state.addGameObject(new Snail_Fast(state, this));
+                lastSnailFastCycleComplete = state.totalTime;
+            }
         }
-        if ((state.totalTime - lastSnailFastCycleComplete) >= 15)           //Add another fast snail each 5 sec
-        {
-            System.out.println("Fast snail added at: " + state.totalTime + " seconds");
-            state.addGameObject(new Snail_Fast(state, this));
-            lastSnailFastCycleComplete = state.totalTime;
-        }
-
 
 
         // Update objects and frames

@@ -65,7 +65,7 @@ public class Tower_Salt extends GameObject implements Clickable
     @Override
     public boolean consumeClick(int mouseX, int mouseY)
     {
-        if (isMoving)
+        if (isMoving && mouseX < 600 && mouseY < 600)
         {
             isMoving = false;
             return true;

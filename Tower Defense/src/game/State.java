@@ -52,8 +52,11 @@ public class State {
         elapsedTime = ((double)(currentStartTime - lastStartTime))/1000;
         lastStartTime = currentStartTime;
         totalTime = (currentStartTime - startTime)/1000;
+//        System.out.println("elapsedTime: " + elapsedTime);
+//        System.out.println("totalTime: " + totalTime);
 
-            nextFrameGameObjects = new ArrayList<GameObject>();    // Creates empty list
+
+        nextFrameGameObjects = new ArrayList<GameObject>();    // Creates empty list
         nextFrameGameObjects.addAll(currentFrameGameObjects);  // Add all the current ones to the new list.  This is more clear
     }
     
