@@ -10,6 +10,8 @@ public class FlyingSalt extends GameObject
     private double xPos;
     private double yPos;
 
+    private Enemy target;
+
     public FlyingSalt (State state, Control control, int x, int y, Enemy e)
     {
         isVisible = true;
@@ -19,8 +21,9 @@ public class FlyingSalt extends GameObject
 
         xPos = x;
         yPos = y;
-        xVelocity = -(x - e.getPosition().x);
-        yVelocity = -(y - e.getPosition().y);
+        xVelocity = (e.getPosition().x - x);
+        yVelocity = (e.getPosition().y - y);
+        target = e;
         System.out.println("Salt shot with: " + xVelocity + " " + yVelocity);
         //System.out.println("Shooting at the enemy at: " + e.getPosition().x + " " + e.getPosition().y + " " + e);
     }
@@ -34,10 +37,14 @@ public class FlyingSalt extends GameObject
             this.isExpired = true;
             this.isVisible = false;
         }
+        // Homing projectile
+//        xVelocity = (target.getPosition().x - xPos);
+//        yVelocity = (target.getPosition().y - yPos);
+//
+        xPos += xVelocity * elapsedTime * 3;
+        yPos += yVelocity * elapsedTime * 3;
 
-        xPos += xVelocity * elapsedTime;
-        yPos += yVelocity * elapsedTime;
-
+        // Kill any enemy within range
         Enemy e = state.findNearestEnemy(new Point((int)xPos, (int)yPos));
         if (e != null)
         {

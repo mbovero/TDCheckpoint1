@@ -45,7 +45,7 @@ public class Tower_Salt extends GameObject implements Clickable
             y = control.getMouseY();
         }
 
-        if (!isMoving && (state.totalTime - lastProjectileFired) >= 3)           //Add another snail each 5 sec
+        if (!isMoving && (state.totalTime - lastProjectileFired) >= 3)           //Shoot salt every 3 seconds
         {
             Enemy e = state.findNearestEnemy(new Point(x, y));
             if (e != null)
