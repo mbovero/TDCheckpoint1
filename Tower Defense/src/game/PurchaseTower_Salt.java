@@ -9,10 +9,10 @@ package game;
 
 import java.awt.*;
 
-public class PurchaseTower extends GameObject implements Clickable{
+public class PurchaseTower_Salt extends GameObject implements Clickable{
 
     //Constructor
-    public PurchaseTower (State state, Control control)
+    public PurchaseTower_Salt(State state, Control control)
     {
         isVisible = true;
         isExpired = false;
@@ -38,13 +38,27 @@ public class PurchaseTower extends GameObject implements Clickable{
     {
         // Draw button
         g.setColor(Color.darkGray);
-        g.fillRect(630, 75, 60, 60);
-//        g.setColor(Color.white);
-//        g.setFont(new Font("SansSerif", Font.BOLD, 46));
-//        g.drawString("S", 645, 123);
-        g.drawImage(control.loadImage("salt.png"), 635, 75, null);
+        g.fillRect(630, 75, 60, 60);                                  // Draw box
+        g.drawImage(control.loadImage("salt.png"), 635, 75, null);  // Draw salt tower
         g.setColor(Color.lightGray);
-        g.drawRect(630, 75, 60, 60);
+        g.drawRect(630, 75, 60, 60);                                  // Draw outline
+
+        // Draw price when mouse hovers over button
+        int mouseX = control.getMouseX();
+        int mouseY = control.getMouseY();
+        if (mouseX >= 630 && mouseX <= 690 &&
+                mouseY >= 75 && mouseY <= 135 &&
+                !state.gameOver)
+        {
+            if (state.getMoney() < 100)
+                g.setColor(Color.red);
+            else
+                g.setColor(Color.black);
+            g.fillRect(630, 136, 60, 20);                             // Draw box
+            g.setColor(Color.white);
+            g.setFont(new Font("SansSerif", Font.BOLD, 17));
+            g.drawString("100", 645, 152);                                    // Draw price
+        }
 
     }
 
@@ -62,7 +76,8 @@ public class PurchaseTower extends GameObject implements Clickable{
     {
         if (mouseX >= 630 && mouseX <= 690 &&
             mouseY >= 75 && mouseY <= 135 &&
-            !state.gameOver)
+            !state.gameOver &&
+            state.getMoney() >= 100)
         {
             state.addGameObject(new Tower_Salt(state, control, true));
             return true;

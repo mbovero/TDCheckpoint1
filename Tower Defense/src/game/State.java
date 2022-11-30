@@ -6,6 +6,7 @@
  */
 package game;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +14,9 @@ public class State {
 
     protected List<GameObject> currentFrameGameObjects;
     protected List<GameObject> nextFrameGameObjects;
-    protected int health;
-    protected int money;
-    protected  int score;
+    private int health = 100;
+    private int money = 300;
+    private  int score = 0;
     protected boolean gameOver;
     protected Control control;
 
@@ -131,4 +132,23 @@ public class State {
      * @param i the points to be added to or removed from score
      */
     public void changeScore(int i) {score += i;}
+
+    public Enemy findNearestEnemy(Point loc)
+    {
+        double smallestDistance = 1000;
+        double distance;
+        Enemy nearestEnemy = null;
+        for (GameObject go : getFrameObjects())
+            if (go instanceof Enemy)
+            {
+                Enemy e = (Enemy) go;
+                distance = Math.sqrt(Math.pow((e.getPosition().x - loc.x),2) + Math.pow((e.getPosition().y - loc.y),2));
+                if (distance < smallestDistance)
+                {
+                    smallestDistance = distance;
+                    nearestEnemy = e;
+                }
+            }
+        return nearestEnemy;
+    }
 }

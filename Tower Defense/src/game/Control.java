@@ -8,7 +8,6 @@ package game;
 
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -63,16 +62,13 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
         view.addMouseMotionListener(this);
 
 	    state.startFrame();  // Prepares the creation of the 'next' frame
-        state.health = 6;
-        state.money = 100;
-        state.score = 0;
         state.gameOver = false;
 
         state.addGameObject(new Background(state, this));  // Add one background object to our list
         state.addGameObject(new Snail(state, this));  // Add one snail to our list
 
         state.addGameObject(new Menu(state, this));
-        state.addGameObject(new PurchaseTower(state, this));
+        state.addGameObject(new PurchaseTower_Salt(state, this));
 
         state.finishFrame();    // Mark the next frame as ready
         view.repaint();           // Draw it.
@@ -147,13 +143,11 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
         {
             if ((state.totalTime - lastSnailCycleComplete) >= 5)           //Add another snail each 5 sec
             {
-                System.out.println("Snail added at: " + state.totalTime + " seconds");
                 state.addGameObject(new Snail(state, this));
                 lastSnailCycleComplete = state.totalTime;
             }
             if ((state.totalTime - lastSnailFastCycleComplete) >= 15)           //Add another fast snail each 15 sec
             {
-                System.out.println("Fast snail added at: " + state.totalTime + " seconds");
                 state.addGameObject(new Snail_Fast(state, this));
                 lastSnailFastCycleComplete = state.totalTime;
             }

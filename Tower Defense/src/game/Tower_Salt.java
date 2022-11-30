@@ -8,6 +8,7 @@
 package game;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Tower_Salt extends GameObject implements Clickable
 {
@@ -15,6 +16,8 @@ public class Tower_Salt extends GameObject implements Clickable
     boolean isMoving;
     int x;
     int y;
+
+    private long lastProjectileFired = 0;
 
     //Constructor
     public Tower_Salt(State state, Control control, boolean isMoving)
@@ -41,6 +44,17 @@ public class Tower_Salt extends GameObject implements Clickable
             x = control.getMouseX();
             y = control.getMouseY();
         }
+
+        if (!isMoving && (state.totalTime - lastProjectileFired) >= 3)           //Add another snail each 5 sec
+        {
+            Enemy e = state.findNearestEnemy(new Point(x, y));
+            if (e != null)
+            {
+                state.addGameObject(new FlyingSalt(state, control, x, y, e));
+                lastProjectileFired = state.totalTime;
+                System.out.println("Shot fired");
+            }
+        }
     }
 
     /**
@@ -51,7 +65,8 @@ public class Tower_Salt extends GameObject implements Clickable
     @Override
     public void draw(Graphics g)
     {
-        g.drawImage(control.loadImage("salt.png"), x, y, null);
+        BufferedImage image = control.loadImage("salt.png");
+        g.drawImage(image, x-(image.getWidth()/2), y-(image.getHeight()/2), null);
     }
 
     /**
@@ -65,8 +80,11 @@ public class Tower_Salt extends GameObject implements Clickable
     @Override
     public boolean consumeClick(int mouseX, int mouseY)
     {
-        if (isMoving && mouseX < 600 && mouseY < 600)
+        if (isMoving &&
+            mouseX < 600 && mouseY < 600)
         {
+            state.changeMoney(-100);
+
             isMoving = false;
             return true;
         }
