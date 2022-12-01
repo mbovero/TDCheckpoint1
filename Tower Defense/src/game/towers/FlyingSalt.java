@@ -1,5 +1,8 @@
-package game;
+package game.towers;
 
+import game.Control;
+import game.GameObject;
+import game.State;
 import game.enemies.Enemy;
 import java.awt.*;
 import java.awt.image.BufferedImage;

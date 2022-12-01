@@ -10,6 +10,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import game.enemies.*;
+import game.gui.GameOver;
 
 public class State {
 

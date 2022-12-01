@@ -5,11 +5,13 @@
  * @author Miles Bovero, Kirt Robinson
  * @version November, 20, 2022
  */
-package game;
+package game.towers;
+
+import game.*;
 
 import java.awt.*;
 
-public class PurchaseTower_Salt extends GameObject implements Clickable{
+public class PurchaseTower_Salt extends GameObject implements Clickable {
 
     //Constructor
     public PurchaseTower_Salt(State state, Control control)

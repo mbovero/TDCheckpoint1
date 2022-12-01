@@ -6,11 +6,15 @@
  * @author Miles Bovero, Kirt Robinson
  * @version November, 20, 2022
  */
-package game;
+package game.gui;
+
+import game.Control;
+import game.GameObject;
+import game.State;
 
 import java.awt.*;
 
-public class Menu extends GameObject{
+public class Menu extends GameObject {
 
     //Constructor
     public Menu (State state, Control control)

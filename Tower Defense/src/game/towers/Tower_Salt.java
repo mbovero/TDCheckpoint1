@@ -5,9 +5,14 @@
  * @author Miles Bovero, Kirt Robinson
  * @version November, 20, 2022
  */
-package game;
+package game.towers;
 
+import game.Clickable;
+import game.Control;
+import game.GameObject;
+import game.State;
 import game.enemies.Enemy;
+import game.towers.FlyingSalt;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

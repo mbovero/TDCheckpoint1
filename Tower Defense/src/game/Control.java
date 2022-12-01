@@ -18,6 +18,9 @@ import javax.swing.Timer;
 
 import game.enemies.Snail;
 import game.enemies.Snail_Fast;
+import game.gui.Background;
+import game.gui.Menu;
+import game.towers.PurchaseTower_Salt;
 import path.Path;
 
 public class Control implements Runnable, ActionListener, MouseListener, MouseMotionListener {

@@ -4,14 +4,18 @@
  * @author Miles Bovero, Kirt Robinson
  * @Version November 20, 2022
  */
-package game;
+package game.gui;
+
+import game.Control;
+import game.GameObject;
+import game.State;
 
 import java.awt.Graphics;
 
-public class Background extends GameObject{
+public class Background extends GameObject {
 
 	//Constructor
-	public Background (State state, Control control) 
+	public Background (State state, Control control)
 	{
         isVisible = true;
         isExpired = false;

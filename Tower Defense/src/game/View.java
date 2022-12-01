@@ -6,12 +6,11 @@
  */
 package game;
 
-import java.awt.Color;
+import game.gui.GameOver;
+import game.gui.Menu;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;

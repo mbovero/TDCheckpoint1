@@ -4,11 +4,15 @@
  * @author Miles Bovero, Kirt Robinson
  * @Version November 20, 2022
  */
-package game;
+package game.gui;
+
+import game.Control;
+import game.GameObject;
+import game.State;
 
 import java.awt.*;
 
-public class GameOver extends GameObject{
+public class GameOver extends GameObject {
 
 	//Constructor
 	public GameOver(State state, Control control)
