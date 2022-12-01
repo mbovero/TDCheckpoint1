@@ -16,6 +16,8 @@ import java.util.Scanner;
 
 import javax.swing.Timer;
 
+import game.enemies.Snail;
+import game.enemies.Snail_Fast;
 import path.Path;
 
 public class Control implements Runnable, ActionListener, MouseListener, MouseMotionListener {

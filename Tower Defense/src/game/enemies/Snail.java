@@ -4,7 +4,10 @@
  * @author Miles Bovero, Kirt Robinson
  * @version November 20, 2022
  */
-package game;
+package game.enemies;
+
+import game.Control;
+import game.State;
 
 import java.awt.Graphics;
 import java.awt.Point;

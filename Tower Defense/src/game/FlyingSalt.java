@@ -1,5 +1,6 @@
 package game;
 
+import game.enemies.Enemy;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 

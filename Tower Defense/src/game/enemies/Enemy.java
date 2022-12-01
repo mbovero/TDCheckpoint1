@@ -1,4 +1,8 @@
-package game;
+package game.enemies;
+
+import game.Control;
+import game.GameObject;
+import game.State;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
