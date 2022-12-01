@@ -128,7 +128,7 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
     }
 
     /**
-     * Listener method to update the frame when an event occurs.
+     * Listener method to update the frame when the timer activates an event.
      *
      * @param e the event to be processed
      */

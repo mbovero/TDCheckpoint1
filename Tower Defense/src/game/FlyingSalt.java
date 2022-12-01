@@ -9,6 +9,10 @@ public class FlyingSalt extends GameObject
     private double yVelocity;
     private double xPos;
     private double yPos;
+    private double speed = 10;
+    private double distance; //distance to the enemy
+    private double xIncrement;
+    private double yIncrement;
 
     private Enemy target;
 
@@ -21,8 +25,11 @@ public class FlyingSalt extends GameObject
 
         xPos = x;
         yPos = y;
-        xVelocity = (e.getPosition().x - x);
-        yVelocity = (e.getPosition().y - y);
+        xVelocity = (e.getPosition().x - x);    //gets the difference in x to the enemy
+        yVelocity = (e.getPosition().y - y);    //gets the difference in y to the enemy
+        distance = Math.sqrt((xVelocity*xVelocity)+(yVelocity*yVelocity));
+        xIncrement = xVelocity * (speed/distance);
+        yIncrement = yVelocity * (speed/distance);
         target = e;
         System.out.println("Salt shot with: " + xVelocity + " " + yVelocity);
         //System.out.println("Shooting at the enemy at: " + e.getPosition().x + " " + e.getPosition().y + " " + e);
@@ -41,8 +48,8 @@ public class FlyingSalt extends GameObject
 //        xVelocity = (target.getPosition().x - xPos);
 //        yVelocity = (target.getPosition().y - yPos);
 //
-        xPos += xVelocity * elapsedTime * 3;
-        yPos += yVelocity * elapsedTime * 3;
+        xPos += xIncrement;
+        yPos += yIncrement;
 
         // Kill any enemy within range
         Enemy e = state.findNearestEnemy(new Point((int)xPos, (int)yPos));
