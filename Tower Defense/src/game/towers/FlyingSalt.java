@@ -61,8 +61,8 @@ public class FlyingSalt extends GameObject
         {
             double distance = Math.sqrt(Math.pow((e.getPosition().x - xPos), 2) + Math.pow((e.getPosition().y - yPos), 2));
             if (distance < 50) {
-                e.isExpired = true;
-                e.isVisible = false;
+                e.setExpiration(true);
+                e.setVisibility(false);
                 this.isExpired = true;
                 this.isVisible = false;
                 state.changeScore(1);

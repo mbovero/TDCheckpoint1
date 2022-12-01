@@ -50,7 +50,7 @@ public class PurchaseTower_Salt extends GameObject implements Clickable {
         int mouseY = control.getMouseY();
         if (mouseX >= 630 && mouseX <= 690 &&
                 mouseY >= 75 && mouseY <= 135 &&
-                !state.gameOver)
+                !state.getGameOver())
         {
             if (state.getMoney() < 100)
                 g.setColor(Color.red);
@@ -78,7 +78,7 @@ public class PurchaseTower_Salt extends GameObject implements Clickable {
     {
         if (mouseX >= 630 && mouseX <= 690 &&
             mouseY >= 75 && mouseY <= 135 &&
-            !state.gameOver &&
+            !state.getGameOver() &&
             state.getMoney() >= 100)
         {
             state.addGameObject(new Tower_Salt(state, control, true));

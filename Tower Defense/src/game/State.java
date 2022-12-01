@@ -153,4 +153,20 @@ public class State {
             }
         return nearestEnemy;
     }
+
+    public long getTotalTime()
+    {
+        return totalTime;
+    }
+
+    public void setGameOver(boolean b)
+    {
+        this.gameOver = b;
+    }
+
+    public boolean getGameOver()
+    {
+        return this.gameOver;
+    }
+
 }

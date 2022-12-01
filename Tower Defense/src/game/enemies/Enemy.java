@@ -66,4 +66,14 @@ abstract public class Enemy extends GameObject {
         return control.getPath().convertToCoordinates(percentage);
     }
 
+    public void setExpiration (boolean b)
+    {
+        this.isExpired = b;
+    }
+
+    public void setVisibility (boolean b)
+    {
+        this.isVisible = b;
+    }
+
 }

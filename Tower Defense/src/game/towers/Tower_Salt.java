@@ -52,13 +52,13 @@ public class Tower_Salt extends GameObject implements Clickable
             y = control.getMouseY();
         }
 
-        if (!isMoving && (state.totalTime - lastProjectileFired) >= 3)           //Shoot salt every 3 seconds
+        if (!isMoving && (state.getTotalTime() - lastProjectileFired) >= 3)           //Shoot salt every 3 seconds
         {
             Enemy e = state.findNearestEnemy(new Point(x, y));
             if (e != null)
             {
                 state.addGameObject(new FlyingSalt(state, control, x, y, e));
-                lastProjectileFired = state.totalTime;
+                lastProjectileFired = state.getTotalTime();
                 System.out.println("Shot fired");
             }
         }
