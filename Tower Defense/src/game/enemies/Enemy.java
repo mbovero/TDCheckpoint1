@@ -12,6 +12,8 @@ abstract public class Enemy extends GameObject {
     protected double percentage;
     protected double velocity;
     protected int healthSubtract;
+    protected int scoreReward;
+    protected int moneyReward;
     protected String spriteFile;
 
     public Enemy (State state, Control control)
@@ -76,4 +78,13 @@ abstract public class Enemy extends GameObject {
         this.isVisible = b;
     }
 
+    public int getScoreReward()
+    {
+        return scoreReward;
+    }
+
+    public int getMoneyReward ()
+    {
+        return moneyReward;
+    }
 }
