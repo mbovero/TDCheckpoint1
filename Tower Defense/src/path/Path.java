@@ -138,8 +138,7 @@ public class Path {
 		
 		// Calculate distance along entire path
 		length *= percentTraveled;
-		//System.out.println("The snail is at length: " + length);
-		
+
 		// Find segment the object is at
 		double lengthCalc = 0;
 		int segmentNum = 0; 
@@ -152,8 +151,7 @@ public class Path {
 				break;
 			}
 		}
-		//System.out.println("The snail is at segment: " + (segmentNum + 1));
-		
+
 		// Find percentage along specific segment
 		double segmentLength = Math.sqrt((this.getX(segmentNum+1)-this.getX(segmentNum))*(this.getX(segmentNum+1)-this.getX(segmentNum)) + (this.getY(segmentNum+1)-this.getY(segmentNum))*(this.getY(segmentNum+1)-this.getY(segmentNum)));
 		double distancePastSegment = segmentLength + length;

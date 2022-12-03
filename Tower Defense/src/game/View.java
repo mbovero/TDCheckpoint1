@@ -56,6 +56,7 @@ public class View extends JPanel {
                 go.draw(g);
         for (GameObject go : drawTop)
             go.draw(g);
+//        control.getPath().draw(g);          // Display actual path
     }
 
 }

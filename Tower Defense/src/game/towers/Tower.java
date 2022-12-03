@@ -60,6 +60,14 @@ abstract public class Tower extends GameObject implements Clickable
         // Load image and center it
         BufferedImage image = control.loadImage(spriteFile);
         g.drawImage(image, x-(image.getWidth()/2), y-(image.getHeight()/2), null);
+
+        // Display tower's distance from path
+//        if (isMoving)
+//        {
+//            Point p = state.findNearestPathPoint(new Point(x,y));
+//            g.setColor(Color.blue);
+//            g.drawLine(p.x,p.y,x,y);
+//        }
     }
 
     /**
@@ -73,8 +81,12 @@ abstract public class Tower extends GameObject implements Clickable
     @Override
     public boolean consumeClick(int mouseX, int mouseY)
     {
+        Point p = state.findNearestPathPoint(new Point(x,y));
+        double distance = Math.sqrt(Math.pow((p.x - x),2) + Math.pow((p.y - y),2));
+
         if (isMoving &&
-                mouseX < 600 && mouseY < 600)       // Restrict placement to game area
+            mouseX < 600 && mouseY < 600 &&         // Restrict placement to game area
+            distance > 30)                          // Restrict placement from path
         {
             isMoving = false;                       // Stop moving the tower
             return true;

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import game.enemies.*;
 import game.gui.GameOver;
+import path.Path;
 
 public class State {
 
@@ -152,6 +153,53 @@ public class State {
                 }
             }
         return nearestEnemy;
+    }
+
+    public Point findNearestPathPoint(Point loc)
+    {
+        // Setup
+        double smallestDistance = 1000;             // Used to calculate smallest distances
+        double distance;                            // Stores length between points
+        Point point1 = new Point();                 // First-smallest path point
+        Point point2 = new Point();                 // Second-smallest path point
+        Point nearestPoint = new Point();           // Overall nearest point to tower
+        Path path = control.getPath();              // Path that points are taken from
+
+        // Find the path segment (2 points) that is closest to the tower
+        for (int i=0; i<path.getPointCount()-1; i++)
+            {
+                distance = Math.sqrt(Math.pow((path.getX(i) - loc.x),2) + Math.pow((path.getY(i) - loc.y),2));
+                if (distance < smallestDistance)
+                {
+                    smallestDistance = distance;
+                    point2 = new Point(path.getX(i+1),path.getY(i+1));
+                    point1 = new Point(path.getX(i),path.getY(i));
+                }
+            }
+
+        // Find the point along the segment that is closest to the tower (accuracy of 5 pixels)
+            // Calculate segment length
+        distance = Math.sqrt(Math.pow((point2.x - point1.x),2) + Math.pow((point2.y - point1.y),2));
+            // Calculate how many iterations needed to accurately find nearest point
+        int pathDivisions = (int)(distance/5);
+        smallestDistance = 1000;    // Reset
+            // Iterate along segment
+        for(int i=0; i<pathDivisions; i++)
+        {
+            // Iterate along every 5 pixel division of the found segment and get x/y values
+            double segmentPercent = (5*i)/distance;
+            double x = (1-segmentPercent)*point1.x + (segmentPercent)*point2.x;
+            double y = (1-segmentPercent)*point1.y + (segmentPercent)*point2.y;
+            // Calculate distance from tower
+            distance = Math.sqrt(Math.pow((x - loc.x),2) + Math.pow((y - loc.y),2));
+            // Store smallest distance and point
+            if (distance < smallestDistance)
+            {
+                smallestDistance = distance;
+                nearestPoint = new Point((int)x,(int)y);
+            }
+        }
+        return nearestPoint;
     }
 
     public long getTotalTime()

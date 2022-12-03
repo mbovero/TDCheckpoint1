@@ -16,6 +16,8 @@ import java.util.Scanner;
 
 import javax.swing.Timer;
 
+import game.enemies.Generator_Snail;
+import game.enemies.Generator_Snail_Fast;
 import game.enemies.Snail;
 import game.enemies.Snail_Fast;
 import game.gui.Background;
@@ -32,10 +34,6 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
     protected int mouseY;
     private Path path;
     HashMap<String, BufferedImage> images;
-
-    private long lastSnailCycleComplete = 0;
-    private long lastSnailFastCycleComplete = 0;
-
 
     //Constructor
 	public Control()
@@ -54,7 +52,7 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
 	        ClassLoader myLoader = this.getClass().getClassLoader();
 	        InputStream pathStream = myLoader.getResourceAsStream("resources/path_2.txt");
 	        Scanner pathScanner = new Scanner(pathStream);
-	        path = new Path(pathScanner); // Builds your path using your Path class
+	        path = new Path(pathScanner); // Builds path using Path class
 		} catch (Exception e){
 			System.out.println("Error occurred while loading path.");
 		}
@@ -69,13 +67,14 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
 	    state.startFrame();  // Prepares the creation of the 'next' frame
         state.gameOver = false;
 
-        state.addGameObject(new Background(state, this));  // Add one background object to our list
-        state.addGameObject(new Snail(state, this));  // Add one snail to our list
+        state.addGameObject(new Background(state, this));           // Add one background object to list
+        state.addGameObject(new Generator_Snail(state, this));      // Add snail generator to list
+        state.addGameObject(new Generator_Snail_Fast(state, this)); // Add snail generator to list
 
         state.addGameObject(new Menu(state, this));
         state.addGameObject(new PurchaseTower_Salt(state, this));
 
-        state.finishFrame();    // Mark the next frame as ready
+        state.finishFrame();      // Mark the next frame as ready
         view.repaint();           // Draw it.
         
         Timer t = new Timer(16, this);  // Triggers every 16 milliseconds, reports actions to 'this' object.
@@ -127,7 +126,7 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
         if (!images.containsKey(filekey)) //Checks if images map includes the filekey
         {
             System.out.println("getting image...");
-        	getImage(filekey);  //If there is no key, this creates a new key with an associated image
+        	getImage(filekey);  //If there is no key, create a new key with an associated image
         }
         return images.get(filekey);
     }
@@ -142,22 +141,6 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
 	{
         // Setup
         List<GameObject> frameObjects = state.getFrameObjects();
-
-        // Systematic enemy generation
-        if(!state.gameOver)
-        {
-            if ((state.totalTime - lastSnailCycleComplete) >= 5)           //Add another snail each 5 sec
-            {
-                state.addGameObject(new Snail(state, this));
-                lastSnailCycleComplete = state.totalTime;
-            }
-            if ((state.totalTime - lastSnailFastCycleComplete) >= 15)           //Add another fast snail each 15 sec
-            {
-                state.addGameObject(new Snail_Fast(state, this));
-                lastSnailFastCycleComplete = state.totalTime;
-            }
-        }
-
 
         // Update objects and frames
         state.startFrame();
