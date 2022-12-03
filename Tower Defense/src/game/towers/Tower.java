@@ -44,7 +44,6 @@ abstract public class Tower extends GameObject implements Clickable
             {
                 shoot();
                 lastProjectileFired = state.getTotalTime();
-                //System.out.println("Shot fired");
             }
         }
     }
@@ -86,7 +85,7 @@ abstract public class Tower extends GameObject implements Clickable
 
         if (isMoving &&
             mouseX < 600 && mouseY < 600 &&         // Restrict placement to game area
-            distance > 30)                          // Restrict placement from path
+            distance > 33)                          // Restrict placement from path
         {
             isMoving = false;                       // Stop moving the tower
             return true;

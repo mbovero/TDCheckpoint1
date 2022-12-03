@@ -22,6 +22,7 @@ import game.enemies.Snail;
 import game.enemies.Snail_Fast;
 import game.gui.Background;
 import game.gui.Menu;
+import game.towers.PurchaseTower_Glue;
 import game.towers.PurchaseTower_Salt;
 import path.Path;
 
@@ -73,6 +74,8 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
 
         state.addGameObject(new Menu(state, this));
         state.addGameObject(new PurchaseTower_Salt(state, this));
+        state.addGameObject(new PurchaseTower_Glue(state, this));
+
 
         state.finishFrame();      // Mark the next frame as ready
         view.repaint();           // Draw it.

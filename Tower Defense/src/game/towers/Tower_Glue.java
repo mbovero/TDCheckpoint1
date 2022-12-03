@@ -10,19 +10,19 @@ package game.towers;
 import game.Control;
 import game.State;
 
-public class Tower_Salt extends Tower
+public class Tower_Glue extends Tower
 {
     //Constructor
-    public Tower_Salt(State state, Control control, boolean isMoving)
+    public Tower_Glue(State state, Control control, boolean isMoving)
     {
         super(state, control, isMoving);
-        this.fireRate = 3;
-        this.spriteFile = "salt.png";
+        this.fireRate = 2;
+        this.spriteFile = "glue_bottle.png";
     }
 
     @Override
     public void shoot()
     {
-        state.addGameObject(new Projectile_Salt(state, control, x, y));       // Shoot the projectile
+        state.addGameObject(new Projectile_Glue(state, control, x, y));       // Shoot the projectile
     }
 }

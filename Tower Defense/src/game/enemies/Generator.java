@@ -9,6 +9,7 @@ import java.awt.*;
 abstract public class Generator extends GameObject {
 
     private double timeToNextCycle;
+    private double timeToNextDifficultyCycle = 30;
     protected double frequency;
     protected double initialDelay;
     protected State state;
@@ -26,7 +27,14 @@ abstract public class Generator extends GameObject {
     @Override
     public void update(double elapsedTime)
     {
-        if (state.getTotalTime() > initialDelay)
+        timeToNextDifficultyCycle -= elapsedTime;
+        if (timeToNextDifficultyCycle <= 0 && !state.getGameOver())
+        {
+            frequency *= .95;
+            timeToNextDifficultyCycle += 30;
+        }
+
+            if (state.getTotalTime() > initialDelay)
         {
             timeToNextCycle -= elapsedTime;
             if (timeToNextCycle <= 0 && !state.getGameOver())

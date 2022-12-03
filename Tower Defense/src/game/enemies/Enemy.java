@@ -63,7 +63,7 @@ abstract public class Enemy extends GameObject {
      *
      * @return a Point object containing the object's x & y position
      */
-    public Point getPosition()
+    public Point getPosition ()
     {
         return control.getPath().convertToCoordinates(percentage);
     }
@@ -78,13 +78,9 @@ abstract public class Enemy extends GameObject {
         this.isVisible = b;
     }
 
-    public int getScoreReward()
-    {
-        return scoreReward;
-    }
+    public int getScoreReward () {return scoreReward;}
 
-    public int getMoneyReward ()
-    {
-        return moneyReward;
-    }
+    public int getMoneyReward () {return moneyReward;}
+
+    public void changeVelocity (double d) {this.velocity *= d;}
 }

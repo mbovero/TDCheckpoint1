@@ -12,8 +12,8 @@ abstract public class Projectile extends GameObject
 {
     private double xVelocity;
     private double yVelocity;
-    private double xPos;
-    private double yPos;
+    protected double xPos;
+    protected double yPos;
     protected double speed;
     private double distance;    //distance to the enemy
     private double xIncrement;
@@ -55,6 +55,11 @@ abstract public class Projectile extends GameObject
         yPos += yIncrement * speed;
 
         // Kill any enemy within range
+        collide();
+    }
+
+    public void collide()
+    {
         Enemy e = state.findNearestEnemy(new Point((int)xPos, (int)yPos));
         if (e != null)
         {
@@ -76,5 +81,4 @@ abstract public class Projectile extends GameObject
         BufferedImage image = control.loadImage(spriteFile);
         g.drawImage(image, (int)xPos-(image.getWidth()/2), (int)yPos-(image.getHeight()/2), null);
     }
-
 }

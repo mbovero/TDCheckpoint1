@@ -1,15 +1,11 @@
 package game.towers;
 
 import game.Control;
-import game.GameObject;
 import game.State;
-import game.enemies.Enemy;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
-public class FlyingSalt extends Projectile
+public class Projectile_Salt extends Projectile
 {
-    public FlyingSalt (State state, Control control, int x, int y)
+    public Projectile_Salt(State state, Control control, int x, int y)
     {
         super(state, control, x, y);
         this.killRange = 50;
