@@ -9,12 +9,12 @@ import java.awt.image.BufferedImage;
 
 abstract public class Enemy extends GameObject {
 
-    protected double percentage;
-    protected double velocity;
-    protected int healthSubtract;
-    protected int scoreReward;
-    protected int moneyReward;
-    protected String spriteFile;
+    protected double percentage;                // The percentage the enemy is along the path
+    protected double velocity;                  // The velocity or speed
+    protected int healthSubtract;               // The amount of health subtracted when the enemy reaches the end of the path
+    protected int scoreReward;                  // The score added when the enemy is defeated
+    protected int moneyReward;                  // The amount of money added when the enemy is defeated
+    protected String spriteFile;                // The name of the file to be used as the enemy's sprite
 
     public Enemy (State state, Control control)
     {
