@@ -1,9 +1,9 @@
 /**
- * This is an abstract class that is used to set up GameObject objects. It provides
- * the GameObject objects the required methods.
+ * This is an abstract class that is used to set up Game Objects. It provides
+ * the GameObject objects with the required methods.
  *
  * @author Miles Bovero, Kirt Robinson
- * @version November 14, 2022
+ * @version December 3, 2022
  */
 package game;
 

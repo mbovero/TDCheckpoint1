@@ -1,3 +1,9 @@
+/**
+ * This superclass creates and allows for the systematic generation of enemy objects.
+ *
+ * @author Miles Bovero, Kirt Robinson
+ * @version December 3, 2022
+ */
 package game.enemies;
 
 import game.Control;
@@ -26,8 +32,10 @@ abstract public class Generator extends GameObject {
     }
 
     /**
-     * A method that controls the cycle in which
-     * @param elapsedTime
+     * A method that controls the cycle in which enemies are spawned,
+     * its delay, and the increasing frequency of enemy generation.
+     *
+     * @param elapsedTime the time elapsed since the last frame
      */
     @Override
     public void update(double elapsedTime)

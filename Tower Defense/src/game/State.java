@@ -2,7 +2,7 @@
  *This class holds the current properties of the game objects in the Tower Defense game.
  *
  * @author Miles Bovero, Kirt Robinson
- * @version November 20, 2022
+ * @version December 3, 2022
  */
 package game;
 

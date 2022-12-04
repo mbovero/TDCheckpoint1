@@ -1,3 +1,9 @@
+/**
+ * This superclass creates and allows for interactions and use of tower objects.
+ *
+ * @author Miles Bovero, Kirt Robinson
+ * @version December 3, 2022
+ */
 package game.towers;
 
 import game.Clickable;

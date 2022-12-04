@@ -1,9 +1,9 @@
 /**
  * This class holds the information for interacting with and displaying
- * the Tower_Salt object.
+ * Salt Tower objects.
  *
  * @author Miles Bovero, Kirt Robinson
- * @version November, 20, 2022
+ * @version December 3, 2022
  */
 package game.towers;
 

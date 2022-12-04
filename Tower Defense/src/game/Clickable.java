@@ -4,7 +4,7 @@
  * game objects that require mouse interaction from the user.
  *
  * @author Miles Bovero, Kirt Robinson
- * @version November, 20, 2022
+ * @version December 3, 2022
  */
 package game;
 

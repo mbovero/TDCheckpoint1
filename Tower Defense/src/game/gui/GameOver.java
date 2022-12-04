@@ -1,8 +1,8 @@
 /**
- * This class creates and allows for interactions and use of a Background object.
+ * This class creates and allows for interactions and use of a GameOver object.
  *
  * @author Miles Bovero, Kirt Robinson
- * @Version November 20, 2022
+ * @Version December 3, 2022
  */
 package game.gui;
 

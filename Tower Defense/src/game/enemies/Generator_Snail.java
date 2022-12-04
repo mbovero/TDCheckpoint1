@@ -1,3 +1,9 @@
+/**
+ * This superclass creates and allows for the systematic generation of Snail objects.
+ *
+ * @author Miles Bovero, Kirt Robinson
+ * @version December 3, 2022
+ */
 package game.enemies;
 
 import game.Control;
@@ -7,7 +13,7 @@ import java.awt.*;
 
 public class Generator_Snail extends Generator
 {
-
+    // Constructor
     public Generator_Snail(State state, Control control)
     {
         super(state, control);
@@ -22,7 +28,5 @@ public class Generator_Snail extends Generator
     }
 
     @Override
-    public void draw(Graphics g) {
-
-    }
+    public void draw(Graphics g) {}
 }

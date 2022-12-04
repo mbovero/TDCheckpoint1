@@ -1,3 +1,10 @@
+/**
+ * This superclass creates and allows for interactions and use of
+ * glue projectiles that slow enemies on impact.
+ *
+ * @author Miles Bovero, Kirt Robinson
+ * @version December 3, 2022
+ */
 package game.towers;
 
 import game.Control;

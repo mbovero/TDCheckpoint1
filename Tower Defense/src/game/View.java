@@ -2,7 +2,7 @@
  * This class sets up and allows for the graphical objects to be seen in the Tower Defense game.
  *
  * @author Miles Bovero, Kirt Robinson
- * @version November 20, 2022
+ * @version December 3, 2022
  */
 package game;
 

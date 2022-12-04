@@ -1,9 +1,9 @@
 /**
- * This class hold the information for displaying and interacting with a salt
+ * This class holds the information for displaying and interacting with a glue
  * tower that is available to buy in the sidebar menu.
  *
  * @author Miles Bovero, Kirt Robinson
- * @version November, 20, 2022
+ * @version December 3, 2022
  */
 package game.towers;
 

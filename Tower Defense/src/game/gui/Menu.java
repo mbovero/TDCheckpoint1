@@ -1,10 +1,10 @@
 /**
  * This class holds the information for displaying the sidebar menu
- * that holds towers available to purchase. It also displays the
- * health, money, and score the player currently holds.
+ * that holds the towers available to purchase. It also displays the
+ * health, money, and score that the player currently holds.
  *
  * @author Miles Bovero, Kirt Robinson
- * @version November, 20, 2022
+ * @version December 3, 2022
  */
 package game.gui;
 
@@ -26,17 +26,13 @@ public class Menu extends GameObject {
         this.control = control;
     }
 
-    /**
-     * Unused method.
-     * @param elapsedTime
-     */
+    // Unused method
     @Override
-    public void update(double elapsedTime) {
-
-    }
+    public void update(double elapsedTime) {}
 
     /**
      * Method that draws the menu.
+     *
      * @param g graphics object to draw over
      */
     @Override

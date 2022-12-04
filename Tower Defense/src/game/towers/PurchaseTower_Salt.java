@@ -1,9 +1,9 @@
 /**
- * This class hold the information for displaying and interacting with a salt
+ * This class holds the information for displaying and interacting with a salt
  * tower that is available to buy in the sidebar menu.
  *
  * @author Miles Bovero, Kirt Robinson
- * @version November, 20, 2022
+ * @version December 3, 2022
  */
 package game.towers;
 
@@ -23,9 +23,7 @@ public class PurchaseTower_Salt extends PurchaseTower {
 
     //Unused method
     @Override
-    public void update(double elapsedTime) {
-
-    }
+    public void update(double elapsedTime) {}
 
     public void placeTower()
     {

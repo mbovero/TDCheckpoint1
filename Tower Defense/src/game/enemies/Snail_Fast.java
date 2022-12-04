@@ -2,7 +2,7 @@
  * This class creates and allows for interactions and use of a Fast Snail object.
  *
  * @author Miles Bovero, Kirt Robinson
- * @version November 20, 2022
+ * @version December 3, 2022
  */
 package game.enemies;
 
