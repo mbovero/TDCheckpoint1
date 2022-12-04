@@ -22,6 +22,5 @@ public class Snail_Fast extends Enemy{
         spriteFile = "snail_fast.png";
         moneyReward = 10;
         scoreReward = 1;
-
     }
 }

@@ -42,9 +42,8 @@ public class View extends JPanel {
      *
      * @param g  the Graphics context in which to paint
      */
-    public void paint(Graphics g) {
-        //System.out.println("repainting...");
-
+    public void paint(Graphics g)
+    {
         // Loop over the list of the current frame's game objects (from the game State object) and draw them
         List<GameObject> drawTop = new ArrayList<GameObject>();
         //Adds all GameObjects that should be visible on the top layer to an array to be drawn later.

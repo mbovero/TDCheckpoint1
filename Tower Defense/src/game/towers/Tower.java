@@ -17,18 +17,17 @@ import java.awt.image.BufferedImage;
 
 abstract public class Tower extends GameObject implements Clickable
 {
-    protected boolean isMoving;
-    protected int x;
-    protected int y;
-    protected double fireRate;
-    protected String spriteFile;
-    private long lastProjectileFired = 0;
-    protected PurchaseTower purchaseTower;
+    protected boolean isMoving;                 // Whether the tower is being moved or not
+    protected int x;                            // The tower's x position
+    protected int y;                            // The tower's y position
+    protected double fireRate;                  // The rate at which the tower fires projectiles
+    protected String spriteFile;                // The name of the file to be used as the enemy's sprite
+    private long lastProjectileFired = 0;       // Used to track projectile shooting
+    protected PurchaseTower purchaseTower;      // The tower purchase button related to this tower
 
     //Constructor
     public Tower(State state, Control control, boolean isMoving, PurchaseTower purchaseTower)
     {
-
         this.state = state;
         this.control = control;
         this.purchaseTower = purchaseTower;
@@ -40,13 +39,15 @@ abstract public class Tower extends GameObject implements Clickable
     @Override
     public void update(double elapsedTime)
     {
-        if (isMoving)                                                               // Move with mouse for initial placement
+        // Moves the tower with the mouse for initial placement
+        if (isMoving)
         {
             x = control.getMouseX();
             y = control.getMouseY();
         }
 
-        if (!isMoving && (state.getTotalTime() - lastProjectileFired) >= fireRate)  // Shoot projectile based on fire rate
+        // Shoot projectile based on fire rate
+        if (!isMoving && (state.getTotalTime() - lastProjectileFired) >= fireRate)
         {
             if (state.findNearestEnemy(new Point(x, y)) != null)
             {
@@ -103,5 +104,9 @@ abstract public class Tower extends GameObject implements Clickable
         return false;
     }
 
+    /**
+     * A method that determines what projectile is
+     * shot from the tower.
+     */
     abstract public void shoot ();
 }

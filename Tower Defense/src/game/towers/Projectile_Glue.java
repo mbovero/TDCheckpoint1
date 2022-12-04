@@ -15,6 +15,7 @@ import java.awt.*;
 
 public class Projectile_Glue extends Projectile
 {
+    // Constructor
     public Projectile_Glue(State state, Control control, int x, int y)
     {
         super(state, control, x, y);
@@ -23,6 +24,11 @@ public class Projectile_Glue extends Projectile
         this.speed = 7;
     }
 
+    /**
+     * This class overrides the normal collide method in
+     * order to apply a unique effect that slows enemies
+     * once a glue projectile has collided.
+     */
     @Override
     public void collide()
     {

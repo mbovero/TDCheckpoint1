@@ -21,8 +21,5 @@ public class Tower_Salt extends Tower
     }
 
     @Override
-    public void shoot()
-    {
-        state.addGameObject(new Projectile_Salt(state, control, x, y));       // Shoot the projectile
-    }
+    public void shoot() {state.addGameObject(new Projectile_Salt(state, control, x, y));}
 }

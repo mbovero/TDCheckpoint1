@@ -16,18 +16,19 @@ import java.awt.image.BufferedImage;
 
 abstract public class Projectile extends GameObject
 {
-    private double xVelocity;
-    private double yVelocity;
-    protected double xPos;
-    protected double yPos;
-    protected double speed;
-    private double distance;    //distance to the enemy
-    private double xIncrement;
-    private double yIncrement;
-    protected double killRange; // The range in which the projectile will collide with an enemy
-    protected String spriteFile;
-    private Enemy target;
+    private double xVelocity;                   // The projectile's x velocity
+    private double yVelocity;                   // The projectile's y velocity
+    protected double xPos;                      // The projectile's x position
+    protected double yPos;                      // The projectile's y position
+    protected double speed;                     // The speed multiplied with the velocities
+    private double distance;                    // Distance to the enemy
+    private double xIncrement;                  // The x distance to be traveled each frame
+    private double yIncrement;                  // The x distance to be traveled each frame
+    protected double killRange;                 // The range in which the projectile will collide with an enemy
+    protected String spriteFile;                // The name of the file to be used as the enemy's sprite
+    private Enemy target;                       // The enemy at which the projectile was shot
 
+    // Constructor
     public Projectile (State state, Control control, int x, int y)
     {
         isVisible = true;
@@ -44,6 +45,13 @@ abstract public class Projectile extends GameObject
         yIncrement = yVelocity * (1/distance);
     }
 
+    /**
+     * A method that removes the projectile once it leaves the
+     * game area, updates its position, and allows for collisions
+     * with enemies.
+     *
+     * @param elapsedTime the time elapsed since the last frame
+     */
     @Override
     public void update(double elapsedTime)
     {
@@ -64,6 +72,10 @@ abstract public class Projectile extends GameObject
         collide();
     }
 
+    /**
+     *  A method that determines the conditions to, and
+     *  result of, colliding with an enemy.
+     */
     public void collide()
     {
         Enemy e = state.findNearestEnemy(new Point((int)xPos, (int)yPos));
@@ -81,6 +93,11 @@ abstract public class Projectile extends GameObject
         }
     }
 
+    /**
+     * A method that draws the projectile as it moves.
+     *
+     * @param g graphics object to draw with
+     */
     @Override
     public void draw(Graphics g)
     {

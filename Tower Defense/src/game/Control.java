@@ -31,9 +31,9 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
     protected State state;
     protected View  view;
 
-    protected int mouseX;
-    protected int mouseY;
-    private Path path;
+    protected int mouseX;                   // The current x position of the mouse
+    protected int mouseY;                   // The current y position of the mouse
+    private Path path;                      // The path along which enemies are drawn
     HashMap<String, BufferedImage> images;
 
     //Constructor
@@ -75,7 +75,6 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
         state.addGameObject(new Menu(state, this));
         state.addGameObject(new PurchaseTower_Salt(state, this));
         state.addGameObject(new PurchaseTower_Glue(state, this));
-
 
         state.finishFrame();      // Mark the next frame as ready
         view.repaint();           // Draw it.
@@ -165,8 +164,6 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
     {
         mouseX = e.getX();
         mouseY = e.getY();
-
-        //System.out.println("X:" + mouseX + " Y:" + mouseY);
     }
 
     /**
@@ -209,32 +206,21 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
 
     //Unused method
     @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
+    public void mouseClicked(MouseEvent e) {}
 
     //Unused method
     @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
+    public void mousePressed(MouseEvent e) {}
 
     //Unused method
     @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
+    public void mouseEntered(MouseEvent e) {}
 
     //Unused method
     @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
+    public void mouseExited(MouseEvent e) {}
 
     //Unused method
     @Override
-    public void mouseDragged(MouseEvent e) {
-
-    }
-
+    public void mouseDragged(MouseEvent e) {}
 }

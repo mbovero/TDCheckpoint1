@@ -15,19 +15,19 @@ import path.Path;
 
 public class State {
 
-    protected List<GameObject> currentFrameGameObjects;
-    protected List<GameObject> nextFrameGameObjects;
-    private int health = 100;
-    private int money = 300;
-    private  int score = 0;
-    protected boolean gameOver;
+    protected List<GameObject> currentFrameGameObjects;             // The game objects currently being displayed
+    protected List<GameObject> nextFrameGameObjects;                // The game objects to be displayed next
+    private int health = 100;                                       // The user's starting health
+    private int money = 300;                                        // The user's starting amount of money
+    private  int score = 0;                                         // The user's starting score
+    protected boolean gameOver;                                     // Whether the user has lost and the game is over
     protected Control control;
 
-    protected double elapsedTime;
-    protected long totalTime;
-    private long startTime = System.currentTimeMillis();
-    private long lastStartTime = startTime;
-    private long currentStartTime;
+    protected double elapsedTime;                                   // Time elapsed since the last frame
+    protected long totalTime;                                       // Total game run time
+    private long startTime = System.currentTimeMillis();            // The time at which the game was started
+    private long lastStartTime = startTime;                         // The last time a frame was updated
+    private long currentStartTime;                                  // The time the current frame was updated
 
 
     // Constructor
@@ -62,7 +62,8 @@ public class State {
     }
     
     /**
-     * Replaces the current frame list with the list we prepared for the next frame.
+     * A method that replaces the current frame list with the list
+     * that's prepared for the next frame.
      */
     public void finishFrame ()
     {
@@ -73,7 +74,7 @@ public class State {
     }
     
     /**
-     * Adds a game object to the next frame of the game.
+     * A method that adds a game object to the next frame of the game.
      * 
      * @param go the game object to be added
      */
@@ -83,14 +84,14 @@ public class State {
     }
 
     /**
-     * Accessor method to gets the amount of health held by the user.
+     * An accessor method that gets the amount of health held by the user.
      *
      * @return health currently held by the user
      */
     public int getHealth() {return this.health;}
 
     /**
-     * Method that changes the player's health.
+     * A method that changes the player's health.
      * 
      * @param i the amount of health to be added or removed
      */
@@ -105,38 +106,48 @@ public class State {
     }
 
     /**
-     * Accessor method to gets the amount of money held by the user.
+     * An accessor method that gets the amount of money held by the user.
      *
      * @return money currently held by the player
      */
     public int getMoney() {return this.money;}
 
     /**
-     * Method that changes the player's money.
+     * A method that changes the player's money.
      * 
      * @param i the amount of money to be added or removed
      */
     public void changeMoney(int i) {money += i;}
     
     /**
-     * Accessor method to gets the user's score.
+     * An accessor method that gets the user's score.
      *
      * @return the player's score
      */
     public int getScore() {return this.score;}
 
     /**
-     * Method that changes the player's score.
+     * A method that changes the player's score.
      * 
      * @param i the points to be added to or removed from score
      */
     public void changeScore(int i) {score += i;}
 
+    /**
+     * A method that determines which enemy is nearest to the
+     * provided x/y coordinate.
+     *
+     * @param loc the point from which the nearest enemy is found
+     * @return the nearest Enemy object
+     */
     public Enemy findNearestEnemy(Point loc)
     {
-        double smallestDistance = 1000;
-        double distance;
-        Enemy nearestEnemy = null;
+        // Setup
+        double smallestDistance = 1000;             // Used to calculate the smallest distance
+        double distance;                            // Stores length between points
+        Enemy nearestEnemy = null;                  // The nearest enemy
+
+        // Iterate through current game objects and find the closest enemy
         for (GameObject go : getFrameObjects())
             if (go instanceof Enemy)
             {
@@ -151,6 +162,13 @@ public class State {
         return nearestEnemy;
     }
 
+    /**
+     * A method that determines which point along the path
+     * is nearest to the provided x/y coordinate.
+     *
+     * @param loc the point from which the nearest path point is calculated
+     * @return the nearest point on the path
+     */
     public Point findNearestPathPoint(Point loc)
     {
         // Setup
@@ -198,16 +216,31 @@ public class State {
         return nearestPoint;
     }
 
+    /**
+     * An accessor method that gets the game's total run time.
+     *
+     * @return the game's total run time
+     */
     public long getTotalTime()
     {
         return totalTime;
     }
 
+    /**
+     * A method that sets state's gameOver boolean value.
+     *
+     * @param b the boolean value to determine whether the game is over or not
+     */
     public void setGameOver(boolean b)
     {
         this.gameOver = b;
     }
 
+    /**
+     * An accessor method that gets state's gameOver boolean value.
+     *
+     * @return a boolean value determining whether the game is over or not
+     */
     public boolean getGameOver()
     {
         return this.gameOver;

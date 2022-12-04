@@ -24,9 +24,7 @@ public class PurchaseTower_Glue extends PurchaseTower {
 
     //Unused method
     @Override
-    public void update(double elapsedTime) {
-
-    }
+    public void update(double elapsedTime) {}
 
     public void placeTower()
     {

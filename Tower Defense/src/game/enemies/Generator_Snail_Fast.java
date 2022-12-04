@@ -13,7 +13,7 @@ import java.awt.*;
 
 public class Generator_Snail_Fast extends Generator
 {
-
+    // Constructor
     public Generator_Snail_Fast(State state, Control control)
     {
         super(state, control);

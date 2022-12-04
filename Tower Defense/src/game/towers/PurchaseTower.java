@@ -16,10 +16,10 @@ import java.awt.*;
 
 abstract public class PurchaseTower extends GameObject implements Clickable
 {
-    protected int xDraw;
-    protected int yDraw;
-    protected int cost;
-    protected String spriteFile;
+    protected int xDraw;                        // The x position at which the purchase button is drawn
+    protected int yDraw;                        // The y position at which the purchase button is drawn
+    protected int cost;                         // The cost to place the tower
+    protected String spriteFile;                // The name of the file to be used as the enemy's sprite
 
     //Constructor
     public PurchaseTower(State state, Control control)
@@ -42,7 +42,7 @@ abstract public class PurchaseTower extends GameObject implements Clickable
         // Draw button
         g.setColor(Color.darkGray);
         g.fillRect(xDraw, yDraw, 60, 60);                                  // Draw box
-        g.drawImage(control.loadImage(spriteFile), xDraw+5, yDraw, null);  // Draw tower icon
+        g.drawImage(control.loadImage(spriteFile), xDraw+5, yDraw, null);   // Draw tower icon
         g.setColor(Color.lightGray);
         g.drawRect(xDraw, yDraw, 60, 60);                                  // Draw outline
 
@@ -60,9 +60,8 @@ abstract public class PurchaseTower extends GameObject implements Clickable
             g.fillRect(xDraw, yDraw+61, 60, 20);                             // Draw box
             g.setColor(Color.white);
             g.setFont(new Font("SansSerif", Font.BOLD, 17));
-            g.drawString(""+cost, xDraw+15, yDraw+77);                                    // Draw price
+            g.drawString(""+cost, xDraw+15, yDraw+77);                             // Draw price
         }
-
     }
 
     /**
@@ -88,10 +87,13 @@ abstract public class PurchaseTower extends GameObject implements Clickable
         return false;
     }
 
+    /**
+     *  A method that determines what tower is to be placed.
+     */
     abstract public void placeTower();
 
     /**
-     *This method returns the cost of the current PurchaseTower Object
+     * This method returns the cost of the current PurchaseTower Object
      *
      * @return int the cost of the tower
      */

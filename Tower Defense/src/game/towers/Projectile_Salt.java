@@ -12,6 +12,7 @@ import game.State;
 
 public class Projectile_Salt extends Projectile
 {
+    // Constructor
     public Projectile_Salt(State state, Control control, int x, int y)
     {
         super(state, control, x, y);

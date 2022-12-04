@@ -38,7 +38,7 @@ abstract public class Enemy extends GameObject {
      * of the enemy, and the expired value of the enemy. Regardless,
      * the percentage which the enemy is along the path is increased.
      *
-     * @param elapsedTime
+     * @param elapsedTime the time elapsed since the last frame
      */
     @Override
     public void update(double elapsedTime)
@@ -53,9 +53,9 @@ abstract public class Enemy extends GameObject {
     }
 
     /**
-     * Method that draws the enemy and its effects at a certain point along the path.
+     * A method that draws the enemy and its effects at a certain point along the path.
      *
-     * @param g graphics object to draw onto
+     * @param g graphics object to draw with
      */
     @Override
     public void draw(Graphics g)
@@ -83,20 +83,45 @@ abstract public class Enemy extends GameObject {
         return control.getPath().convertToCoordinates(percentage);
     }
 
+    /**
+     * Method that sets the enemy's isExpired variable.
+     *
+     * @param b a boolean value that determines whether the object is expired
+     */
     public void setExpiration (boolean b)
     {
         this.isExpired = b;
     }
 
+    /**
+     * Method that sets the enemy's isVisible variable.
+     *
+     * @param b a boolean value that determines whether the object is visible
+     */
     public void setVisibility (boolean b)
     {
         this.isVisible = b;
     }
 
+    /**
+     * Method that returns the score awarded for defeating the enemy.
+     *
+     * @return a score in the form of an integer
+     */
     public int getScoreReward () {return scoreReward;}
 
+    /**
+     * Method that returns the money awarded for defeating the enemy.
+     *
+     * @return an amount of money in the form of an integer
+     */
     public int getMoneyReward () {return moneyReward;}
 
+    /**
+     * Method that changes the enemy's velocity.
+     *
+     * @param d a number to be multiplied by the enemy's current velocity
+     */
     public void changeVelocity (double d) {this.velocity *= d;}
 
     /**
