@@ -13,9 +13,9 @@ import game.State;
 public class Tower_Salt extends Tower
 {
     //Constructor
-    public Tower_Salt(State state, Control control, boolean isMoving)
+    public Tower_Salt(State state, Control control, boolean isMoving, PurchaseTower purchaseTower)
     {
-        super(state, control, isMoving);
+        super(state, control, isMoving, purchaseTower);
         this.fireRate = 3;
         this.spriteFile = "salt.png";
     }

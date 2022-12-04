@@ -76,13 +76,25 @@ abstract public class PurchaseTower extends GameObject implements Clickable
                 state.getMoney() >= cost)
         {
             placeTower();
-            state.changeMoney(-this.cost);               // Subtract money according to cost
-            this.cost *= 1.1;                            // Increase cost by 10% every placement
             return true;
         }
         return false;
     }
 
     abstract public void placeTower();
+
+    /**
+     *This method returns the cost of the current PurchaseTower Object
+     *
+     * @return int the cost of the tower
+     */
+    public int getCost() {return cost;}
+
+    /**
+     * This method changes the cost of the current PurchaseTower Object
+     *
+     * @param percent the amount the cost should increase by
+     */
+    public void changeCost(double percent) {this.cost *= 1.1;}
 
 }

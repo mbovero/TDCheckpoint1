@@ -17,13 +17,15 @@ abstract public class Tower extends GameObject implements Clickable
     protected double fireRate;
     protected String spriteFile;
     private long lastProjectileFired = 0;
+    protected PurchaseTower purchaseTower;
 
     //Constructor
-    public Tower(State state, Control control, boolean isMoving)
+    public Tower(State state, Control control, boolean isMoving, PurchaseTower purchaseTower)
     {
 
         this.state = state;
         this.control = control;
+        this.purchaseTower = purchaseTower;
         isVisible = true;
         isExpired = false;
         this.isMoving = isMoving;
@@ -84,10 +86,12 @@ abstract public class Tower extends GameObject implements Clickable
         double distance = Math.sqrt(Math.pow((p.x - x),2) + Math.pow((p.y - y),2));
 
         if (isMoving &&
-            mouseX < 600 && mouseY < 600 &&         // Restrict placement to game area
-            distance > 33)                          // Restrict placement from path
+            mouseX < 600 && mouseY < 600 &&                 // Restrict placement to game area
+            distance > 33)                                  // Restrict placement from path
         {
-            isMoving = false;                       // Stop moving the tower
+            isMoving = false;                               // Stop moving the tower
+            state.changeMoney(-purchaseTower.getCost());    //Changes the current money held
+            purchaseTower.changeCost(1.1);           //Changes the associated PurchaseTower's cost
             return true;
         }
         return false;
