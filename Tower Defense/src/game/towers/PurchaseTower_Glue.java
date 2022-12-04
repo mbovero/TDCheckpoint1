@@ -30,7 +30,7 @@ public class PurchaseTower_Glue extends PurchaseTower {
 
     public void placeTower()
     {
-        state.addGameObject(new Tower_Glue(state, control, true));
+        state.addGameObject(new Tower_Glue(state, control, true, this));
     }
 
     public int getCost()
