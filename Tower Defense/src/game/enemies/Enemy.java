@@ -21,6 +21,7 @@ abstract public class Enemy extends GameObject {
     protected int scoreReward;                  // The score added when the enemy is defeated
     protected int moneyReward;                  // The amount of money added when the enemy is defeated
     protected String spriteFile;                // The name of the file to be used as the enemy's sprite
+    protected String[] effects = new String[2]; // Holds space for effects to be given and current effects placed on the object
 
     public Enemy (State state, Control control)
     {
@@ -52,7 +53,7 @@ abstract public class Enemy extends GameObject {
     }
 
     /**
-     * Method that draws the enemy at a certain point along the path.
+     * Method that draws the enemy and its effects at a certain point along the path.
      *
      * @param g graphics object to draw onto
      */
@@ -62,6 +63,12 @@ abstract public class Enemy extends GameObject {
         Point loc = control.getPath().convertToCoordinates(percentage);
         BufferedImage image = control.loadImage(spriteFile);
         g.drawImage(image, loc.x-(image.getWidth()/2), loc.y-(image.getHeight()/2), null);
+        for (String effect : effects)
+            {
+            if (effect != null);
+                BufferedImage effect_image = control.loadImage(effect + ".txt");
+                g.drawImage(effect_image, loc.x-(image.getWidth()/2), loc.y-(image.getHeight()/2), null);
+            }
     }
 
     /**
@@ -89,4 +96,16 @@ abstract public class Enemy extends GameObject {
     public int getMoneyReward () {return moneyReward;}
 
     public void changeVelocity (double d) {this.velocity *= d;}
+
+    /**
+     * This method allows for projectiles to give the Enemy object a
+     * visual effect when collision occurs.
+     *
+     * @param effect the visual effect to be given to the Enemy Object
+     * @param place the position in the effect list to be drawn
+     */
+    public void setEffect (String effect, int place)
+    {
+        effects[place] = effect;
+    }
 }
