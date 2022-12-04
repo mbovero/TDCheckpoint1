@@ -63,10 +63,10 @@ abstract public class Enemy extends GameObject {
         Point loc = control.getPath().convertToCoordinates(percentage);
         BufferedImage image = control.loadImage(spriteFile);
         g.drawImage(image, loc.x-(image.getWidth()/2), loc.y-(image.getHeight()/2), null);
-        for (String effect : effects)
+        for (int i=0; i<effects.length; i++)
             {
-            if (effect != null);
-                BufferedImage effect_image = control.loadImage(effect + ".txt");
+            if (effects[i] != null);
+                BufferedImage effect_image = control.loadImage(effects[i]);
                 g.drawImage(effect_image, loc.x-(image.getWidth()/2), loc.y-(image.getHeight()/2), null);
             }
     }

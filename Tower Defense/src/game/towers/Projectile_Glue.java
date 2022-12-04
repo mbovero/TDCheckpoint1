@@ -34,7 +34,7 @@ public class Projectile_Glue extends Projectile
                 this.isExpired = true;
                 this.isVisible = false;
                 e.changeVelocity(.5);
-                e.setEffect("glued", 0);
+                e.setEffect("glued.png", 0);
             }
         }
     }
