@@ -25,6 +25,10 @@ abstract public class Generator extends GameObject {
         timeToNextCycle = frequency;
     }
 
+    /**
+     * A method that controls the cycle in which
+     * @param elapsedTime
+     */
     @Override
     public void update(double elapsedTime)
     {
@@ -46,5 +50,9 @@ abstract public class Generator extends GameObject {
         }
     }
 
+    /**
+     *  A method that generates an enemy that
+     *  is specified by the generator being used.
+     */
     abstract public void generate();
 }
