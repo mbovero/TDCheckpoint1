@@ -111,6 +111,7 @@ abstract public class Tower extends GameObject implements Clickable
             isMoving = false;                               // Stop moving the tower
             state.changeMoney(-purchaseTower.getCost());    //Changes the current money held
             purchaseTower.changeCost(1.1);           //Changes the associated PurchaseTower's cost
+            control.setPlacingTower(false);
             return true;
         }
         return false;

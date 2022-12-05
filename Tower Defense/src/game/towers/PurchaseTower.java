@@ -83,6 +83,7 @@ abstract public class PurchaseTower extends GameObject implements Clickable
                 !control.getPlacingTower())
         {
             placeTower();
+            control.setPlacingTower(true);
             return true;
         }
         return false;

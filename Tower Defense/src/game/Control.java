@@ -217,15 +217,12 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
     }
 
     /**
-     * Accessor method that returns the boolean value indicating
+     * Accessor method that sets the boolean value indicating
      * whether a tower is currently being placed or not.
      *
-     * @param boolean value indicating whether a tower is currently being placed
+     * @param value indicating whether a tower is currently being placed
      */
-    public boolean setPlacingTower()
-    {
-        return placingTower;
-    }
+    public void setPlacingTower(boolean value) {placingTower = value;}
 
     //Unused method
     @Override
