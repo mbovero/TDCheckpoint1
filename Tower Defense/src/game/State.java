@@ -167,13 +167,14 @@ public class State {
      * provided x/y coordinate AND within the given range.
      *
      * @param loc the point from which the nearest enemy is found
+     * @param range diameter the enemy must be in
      * @return the nearest Enemy object
      */
     public Enemy findNearestEnemy(Point loc, double range)
     {
         // Setup
         double smallestDistance = 1000;             // Used to calculate the smallest distance
-        double distance;                            // Stores length between points
+        double distance = 0;                            // Stores length between points
         Enemy nearestEnemy = null;                  // The nearest enemy
 
         // Iterate through current game objects and find the closest enemy
@@ -188,8 +189,9 @@ public class State {
                     nearestEnemy = e;
                 }
             }
-        distance = Math.sqrt(Math.pow((nearestEnemy.getPosition().x - loc.x),2) + Math.pow((nearestEnemy.getPosition().y - loc.y),2));
-        if (distance < range)
+        if (nearestEnemy != null)
+            distance = Math.sqrt(Math.pow((nearestEnemy.getPosition().x - loc.x),2) + Math.pow((nearestEnemy.getPosition().y - loc.y),2));
+        if (distance < range/2)
             return nearestEnemy;
         return null;
     }

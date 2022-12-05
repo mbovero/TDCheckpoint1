@@ -21,7 +21,7 @@ abstract public class Tower extends GameObject implements Clickable
     protected int x;                            // The tower's x position
     protected int y;                            // The tower's y position
     protected double fireRate;                  // The rate at which the tower fires projectiles
-    protected double range;                     // The range that the tower can shoot within
+    protected double range;                     // The range that the tower can shoot within (diameter)
     protected String spriteFile;                // The name of the file to be used as the enemy's sprite
     private long lastProjectileFired = 0;       // Used to track projectile shooting
     protected PurchaseTower purchaseTower;      // The tower purchase button related to this tower
@@ -50,7 +50,7 @@ abstract public class Tower extends GameObject implements Clickable
         // Shoot projectile based on fire rate
         if (!isMoving && (state.getTotalTime() - lastProjectileFired) >= fireRate)
         {
-            if (state.findNearestEnemy(new Point(x, y), range) != null)                    // If there is an enemy to shoot...
+            if (state.findNearestEnemy(new Point(x, y), range) != null)           // If there is an enemy to shoot...
             {
                 shoot();
                 lastProjectileFired = state.getTotalTime();
@@ -67,9 +67,19 @@ abstract public class Tower extends GameObject implements Clickable
     public void draw(Graphics g)
     {
 
-        // Load image and center it
+        // Load tower image
         BufferedImage image = control.loadImage(spriteFile);
+
+        // Draw the range of the tower during placement
+        if (isMoving)
+        {
+            g.setColor(new Color(76, 76, 76, 146));
+            g.fillOval(x-(int)range/2, y-(int)range/2, (int)range ,(int)range);
+        }
+
+        // Draw tower centered on x/y position
         g.drawImage(image, x-(image.getWidth()/2), y-(image.getHeight()/2), null);
+
 
         // Display tower's distance from path
 //        if (isMoving)

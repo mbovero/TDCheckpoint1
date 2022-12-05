@@ -18,7 +18,7 @@ public class Tower_Glue extends Tower
         super(state, control, isMoving, purchaseTower);
         this.fireRate = 1.5;
         this.spriteFile = "glue_bottle.png";
-        this.range = 50;
+        this.range = 150;
     }
 
     @Override
