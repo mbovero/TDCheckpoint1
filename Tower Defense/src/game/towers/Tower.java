@@ -21,6 +21,7 @@ abstract public class Tower extends GameObject implements Clickable
     protected int x;                            // The tower's x position
     protected int y;                            // The tower's y position
     protected double fireRate;                  // The rate at which the tower fires projectiles
+    protected double range;                     // The range that the tower can shoot within
     protected String spriteFile;                // The name of the file to be used as the enemy's sprite
     private long lastProjectileFired = 0;       // Used to track projectile shooting
     protected PurchaseTower purchaseTower;      // The tower purchase button related to this tower
@@ -49,7 +50,7 @@ abstract public class Tower extends GameObject implements Clickable
         // Shoot projectile based on fire rate
         if (!isMoving && (state.getTotalTime() - lastProjectileFired) >= fireRate)
         {
-            if (state.findNearestEnemy(new Point(x, y)) != null)
+            if (state.findNearestEnemy(new Point(x, y), range) != null)                    // If there is an enemy to shoot...
             {
                 shoot();
                 lastProjectileFired = state.getTotalTime();

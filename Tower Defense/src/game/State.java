@@ -163,6 +163,39 @@ public class State {
     }
 
     /**
+     * A method that determines which enemy is nearest to the
+     * provided x/y coordinate AND within the given range.
+     *
+     * @param loc the point from which the nearest enemy is found
+     * @return the nearest Enemy object
+     */
+    public Enemy findNearestEnemy(Point loc, double range)
+    {
+        // Setup
+        double smallestDistance = 1000;             // Used to calculate the smallest distance
+        double distance;                            // Stores length between points
+        Enemy nearestEnemy = null;                  // The nearest enemy
+
+        // Iterate through current game objects and find the closest enemy
+        for (GameObject go : getFrameObjects())
+            if (go instanceof Enemy)
+            {
+                Enemy e = (Enemy) go;
+                distance = Math.sqrt(Math.pow((e.getPosition().x - loc.x),2) + Math.pow((e.getPosition().y - loc.y),2));
+                if (distance < smallestDistance)
+                {
+                    smallestDistance = distance;
+                    nearestEnemy = e;
+                }
+            }
+        distance = Math.sqrt(Math.pow((nearestEnemy.getPosition().x - loc.x),2) + Math.pow((nearestEnemy.getPosition().y - loc.y),2));
+        if (distance < range)
+            return nearestEnemy;
+        return null;
+    }
+
+
+    /**
      * A method that determines which point along the path
      * is nearest to the provided x/y coordinate.
      *
