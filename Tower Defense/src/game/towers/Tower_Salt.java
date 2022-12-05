@@ -16,8 +16,9 @@ public class Tower_Salt extends Tower
     public Tower_Salt(State state, Control control, boolean isMoving, PurchaseTower purchaseTower)
     {
         super(state, control, isMoving, purchaseTower);
-        this.fireRate = 3;
+        this.fireRate = .75;
         this.spriteFile = "salt.png";
+        this.range = 100;
     }
 
     @Override

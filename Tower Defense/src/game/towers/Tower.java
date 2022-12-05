@@ -66,6 +66,7 @@ abstract public class Tower extends GameObject implements Clickable
     @Override
     public void draw(Graphics g)
     {
+
         // Load image and center it
         BufferedImage image = control.loadImage(spriteFile);
         g.drawImage(image, x-(image.getWidth()/2), y-(image.getHeight()/2), null);
