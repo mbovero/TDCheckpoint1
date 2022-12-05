@@ -79,7 +79,8 @@ abstract public class PurchaseTower extends GameObject implements Clickable
         if (mouseX >= xDraw && mouseX <= xDraw+60 &&
                 mouseY >= yDraw && mouseY <= yDraw+60 &&
                 !state.getGameOver() &&
-                state.getMoney() >= cost)
+                state.getMoney() >= cost &&
+                !control.getPlacingTower())
         {
             placeTower();
             return true;

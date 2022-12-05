@@ -35,6 +35,7 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
     protected int mouseY;                   // The current y position of the mouse
     private Path path;                      // The path along which enemies are drawn
     HashMap<String, BufferedImage> images;
+    protected boolean placingTower = false;           // Whether a tower is currently being placed or not
 
     //Constructor
 	public Control()
@@ -202,6 +203,28 @@ public class Control implements Runnable, ActionListener, MouseListener, MouseMo
                 if (c.consumeClick(mouseX, mouseY))
                     break;
             }
+    }
+
+    /**
+     * Accessor method that returns the boolean value indicating
+     * whether a tower is currently being placed or not.
+     *
+     * @return boolean value indicating whether a tower is currently being placed
+     */
+    public boolean getPlacingTower()
+    {
+        return placingTower;
+    }
+
+    /**
+     * Accessor method that returns the boolean value indicating
+     * whether a tower is currently being placed or not.
+     *
+     * @param boolean value indicating whether a tower is currently being placed
+     */
+    public boolean setPlacingTower()
+    {
+        return placingTower;
     }
 
     //Unused method
