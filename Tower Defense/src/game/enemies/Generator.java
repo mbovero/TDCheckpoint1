@@ -15,7 +15,6 @@ import java.awt.*;
 abstract public class Generator extends GameObject {
 
     private double timeToNextCycle;                         // The time until the next spawn cycle
-    private double timeToNextDifficultyCycle = 30;          // The time until the spawn rate is increased
     protected double frequency;                             // The time interval (in seconds) that the enemy is spawned in
     protected double initialDelay;                          // The time (in seconds) before the enemy begins spawning
     protected State state;
@@ -40,21 +39,24 @@ abstract public class Generator extends GameObject {
     @Override
     public void update(double elapsedTime)
     {
-        timeToNextDifficultyCycle -= elapsedTime;
-        if (timeToNextDifficultyCycle <= 0 && !state.getGameOver())
-        {
-            frequency *= .95;
-            timeToNextDifficultyCycle += 30;
-        }
-
             if (state.getTotalTime() > initialDelay)
         {
-            timeToNextCycle -= elapsedTime;
-            if (timeToNextCycle <= 0 && !state.getGameOver())
-            {
-                generate();
-                timeToNextCycle += frequency;
-            }
+            doGenerationCycle(elapsedTime);
+        }
+    }
+
+    /**
+     * The default method used to systematically generate enemies.
+     *
+     * @param elapsedTime the time elapsed since the last frame
+     */
+    public void doGenerationCycle(double elapsedTime)
+    {
+        timeToNextCycle -= elapsedTime;
+        if (timeToNextCycle <= 0 && !state.getGameOver())
+        {
+            generate();
+            timeToNextCycle += frequency;
         }
     }
 
