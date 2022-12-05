@@ -69,12 +69,15 @@ abstract public class Tower extends GameObject implements Clickable
 
         // Load tower image
         BufferedImage image = control.loadImage(spriteFile);
-
         // Draw the range of the tower during placement
-        if (isMoving)
-        {
-            g.setColor(new Color(76, 76, 76, 146));
-            g.fillOval(x-(int)range/2, y-(int)range/2, (int)range ,(int)range);
+        if (isMoving) {
+            Point p = state.findNearestPathPoint(new Point(x, y));
+            double distance = Math.sqrt(Math.pow((p.x - x), 2) + Math.pow((p.y - y), 2));
+            if (distance < 33) {
+                g.setColor(new Color(255, 40, 40, 146));}
+            else {
+                g.setColor(new Color(76, 76, 76, 146));}
+            g.fillOval(x - (int) range / 2, y - (int) range / 2, (int) range, (int) range);
         }
 
         // Draw tower centered on x/y position
@@ -114,7 +117,24 @@ abstract public class Tower extends GameObject implements Clickable
             control.setPlacingTower(false);
             return true;
         }
+        //implement clicking tower menu
         return false;
+    }
+
+    /**
+     * Method to return the moving state of the Tower object
+     * @return
+     */
+    public boolean getMoving (){return isMoving;}
+
+    /**
+     * Method that removes the Tower object from play
+     */
+    public void trash ()
+    {
+        isMoving = false;
+        isVisible = false;
+        isExpired = true;
     }
 
     /**

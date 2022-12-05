@@ -11,6 +11,7 @@ import game.Clickable;
 import game.Control;
 import game.GameObject;
 import game.State;
+import game.gui.Trash;
 
 import java.awt.*;
 
