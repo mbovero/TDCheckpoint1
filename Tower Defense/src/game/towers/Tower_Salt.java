@@ -27,4 +27,9 @@ public class Tower_Salt extends Tower
 
     @Override
     public void shoot() {state.addGameObject(new Projectile_Salt(state, control, x, y));}
+
+    @Override
+    public String[][] getUpgradeInfo() {
+        return new String[0][];
+    }
 }

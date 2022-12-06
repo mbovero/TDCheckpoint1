@@ -27,4 +27,9 @@ public class Tower_Glue extends Tower
 
     @Override
     public void shoot() {state.addGameObject(new Projectile_Glue(state, control, x, y));}
+
+    @Override
+    public String[][] getUpgradeInfo() {
+        return new String[0][];
+    }
 }

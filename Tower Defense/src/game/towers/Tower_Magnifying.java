@@ -29,4 +29,9 @@ public class Tower_Magnifying extends Tower{
     public void shoot() {
 
     }
+
+    @Override
+    public String[][] getUpgradeInfo() {
+        return new String[0][];
+    }
 }
