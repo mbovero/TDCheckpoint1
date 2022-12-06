@@ -9,8 +9,8 @@ import game.towers.Tower;
 import java.awt.*;
 
 public class Trash extends GameObject implements Clickable {
-    protected int xDraw = 610;                              //X position of the trash button to draw from
-    protected int yDraw = 520;                              //Y position of the trash button to draw from
+    protected int xDraw = 610;                              // X position of the trash button to draw from
+    protected int yDraw = 520;                              // Y position of the trash button to draw from
     protected String spritefile1 = "trash_closed.png";
     protected String spritefile2 = "trash_open.png";
     boolean trashable = false;                                      //Boolean to tell if the trash icon should be open or closed
@@ -24,9 +24,10 @@ public class Trash extends GameObject implements Clickable {
     }
 
     @Override
-    public boolean consumeClick(int mouseX, int mouseY) {
-        if (mouseX > 610 && mouseX < 790
-            && mouseY > 520 && mouseY < 590)
+    public boolean consumeClick(int mouseX, int mouseY)
+    {
+        if (mouseX > 610 && mouseX < 790 &&
+            mouseY > 520 && mouseY < 590)
         {
             for (GameObject go : state.getFrameObjects())
             {
@@ -46,18 +47,16 @@ public class Trash extends GameObject implements Clickable {
     }
 
     @Override
-    public void update(double elapsedTime) {
-
-    }
+    public void update(double elapsedTime) {}
 
     @Override
     public void draw(Graphics g) {
-        if (trashable){
+        if (control.getPlacingTower() &&
+            control.getMouseX() > 610 && control.getMouseX() < 790 &&
+            control.getMouseY() > 520 && control.getMouseY() < 590)
             g.drawImage(control.loadImage(spritefile2), xDraw, yDraw, null);
-        }
-        else {
+        else
             g.drawImage(control.loadImage(spritefile1), xDraw, yDraw, null);
-        }
 
     }
 }

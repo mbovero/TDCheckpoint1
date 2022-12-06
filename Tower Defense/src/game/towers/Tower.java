@@ -10,7 +10,6 @@ import game.Clickable;
 import game.Control;
 import game.GameObject;
 import game.State;
-import game.enemies.Enemy;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -23,7 +22,7 @@ abstract public class Tower extends GameObject implements Clickable
     protected double fireRate;                  // The rate at which the tower fires projectiles
     protected double range;                     // The range that the tower can shoot within (diameter)
     protected String spriteFile;                // The name of the file to be used as the enemy's sprite
-    private long lastProjectileFired = 0;       // Used to track projectile shooting
+    private double timeToNextProjectileCycle;   // Used to track projectile shooting
     protected PurchaseTower purchaseTower;      // The tower purchase button related to this tower
 
     //Constructor
@@ -35,6 +34,7 @@ abstract public class Tower extends GameObject implements Clickable
         isVisible = true;
         isExpired = false;
         this.isMoving = isMoving;
+        timeToNextProjectileCycle = fireRate;
     }
 
     @Override
@@ -48,12 +48,13 @@ abstract public class Tower extends GameObject implements Clickable
         }
 
         // Shoot projectile based on fire rate
-        if (!isMoving && (state.getTotalTime() - lastProjectileFired) >= fireRate)
+        timeToNextProjectileCycle -= elapsedTime;
+        if (!isMoving && timeToNextProjectileCycle <= 0 && !state.getGameOver())
         {
             if (state.findNearestEnemy(new Point(x, y), range) != null)           // If there is an enemy to shoot...
             {
                 shoot();
-                lastProjectileFired = state.getTotalTime();
+                timeToNextProjectileCycle = fireRate;
             }
         }
     }
