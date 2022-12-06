@@ -28,6 +28,7 @@ public class State {
     private long startTime = System.currentTimeMillis();            // The time at which the game was started
     private long lastStartTime = startTime;                         // The last time a frame was updated
     private long currentStartTime;                                  // The time the current frame was updated
+    protected boolean inTowerMenu = false;                          // If we are in a tower's menu
 
 
     // Constructor
@@ -281,4 +282,17 @@ public class State {
         return this.gameOver;
     }
 
+    /**
+     * Method to set the state of being in a TowerMenu
+     *
+     * @param value for if we are in a TowerMenu
+     */
+    public void setTowerMenu (boolean value) {this.inTowerMenu = value;}
+
+    /**
+     * Method to get the state of being in a TowerMenu
+     *
+     * @return boolean state of inTowerMenu
+     */
+    public boolean getTowerMenu () {return this.inTowerMenu;}
 }

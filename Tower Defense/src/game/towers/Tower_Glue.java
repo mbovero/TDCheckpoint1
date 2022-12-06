@@ -12,6 +12,9 @@ import game.State;
 
 public class Tower_Glue extends Tower
 {
+    protected String[][] glue = new String[][]      //Information for glue tower upgrades
+            {{"", "Mass Gluing", "120", "Cover them all"},{"", "Glue Trap", "75", "Make them stay put and get what they deserve"},{"", "Gorilla Glue", "100","Glue so strong it doesn't go away"}};
+
     //Constructor
     public Tower_Glue(State state, Control control, boolean isMoving, PurchaseTower purchaseTower)
     {
@@ -19,6 +22,7 @@ public class Tower_Glue extends Tower
         this.fireRate = 1.5;
         this.spriteFile = "glue_bottle.png";
         this.range = 150;
+        this.towerName = "Glue";
     }
 
     @Override

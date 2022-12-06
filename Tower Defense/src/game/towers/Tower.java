@@ -24,6 +24,8 @@ abstract public class Tower extends GameObject implements Clickable
     protected String spriteFile;                // The name of the file to be used as the enemy's sprite
     private double timeToNextProjectileCycle;   // Used to track projectile shooting
     protected PurchaseTower purchaseTower;      // The tower purchase button related to this tower
+    protected String towerName;
+    protected boolean[] upgrades;
 
     //Constructor
     public Tower(State state, Control control, boolean isMoving, PurchaseTower purchaseTower)
@@ -143,4 +145,22 @@ abstract public class Tower extends GameObject implements Clickable
      * shot from the tower.
      */
     abstract public void shoot ();
+
+    public String getTowerName () {return towerName;}
+
+    /**
+     * An accessor method that returns the upgrades list
+     * @return
+     */
+    public boolean[] getUpgrades () {return upgrades;}
+
+    /**
+     * A method that changes the state of the upgrades on this Tower object
+     *
+     * @param upgrade which upgrade to change
+     * @param value what state to set the upgrade to
+     */
+    public void setUpgrades (int upgrade, boolean value) {this.upgrades[upgrade] = value;}
+
+    abstract public String[][] getUpgradeInfo ();
 }

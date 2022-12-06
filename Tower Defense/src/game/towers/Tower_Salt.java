@@ -12,6 +12,9 @@ import game.State;
 
 public class Tower_Salt extends Tower
 {
+    protected String[][] salt = new String[][]          //information for salt tower upgrades
+            {{"", "Faster Firing", "75", "Increases the speed of salt thrown at enemies"},{"", "More Salt", "100", "Take the cap off and really let loose"},{"", "Special Salt", "120", "Maybe I won't get em', but they're still gonna hurt"}};
+
     //Constructor
     public Tower_Salt(State state, Control control, boolean isMoving, PurchaseTower purchaseTower)
     {
@@ -19,6 +22,7 @@ public class Tower_Salt extends Tower
         this.fireRate = .75;
         this.spriteFile = "salt.png";
         this.range = 250;
+        this.towerName = "Salt";
     }
 
     @Override
