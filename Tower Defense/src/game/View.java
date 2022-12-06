@@ -6,8 +6,7 @@
  */
 package game;
 
-import game.gui.GameOver;
-import game.gui.Menu;
+import game.gui.*;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -48,7 +47,8 @@ public class View extends JPanel {
         List<GameObject> drawTop = new ArrayList<GameObject>();
         //Adds all GameObjects that should be visible on the top layer to an array to be drawn later.
         for (GameObject go : state.getFrameObjects())
-            if (go.isVisible() && !go.isExpired() && go instanceof Clickable || go instanceof Menu || go instanceof GameOver)
+            if (go.isVisible() && !go.isExpired() || go instanceof Clickable
+                || go instanceof Menu || go instanceof TowerMenu || go instanceof GameOver)
                 drawTop.add(go);
         for (GameObject go : state.getFrameObjects())
             if (go.isVisible() && !go.isExpired())

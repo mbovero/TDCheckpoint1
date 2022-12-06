@@ -18,7 +18,8 @@ public class Snail extends Enemy {
     public Snail(State state, Control control) {
         super(state, control);
         healthSubtract = -1;
-        velocity = 1.0/15;          // Percentage along path / total seconds (reaches end in 15 seconds)
+        originalvelocity = 1.0/15; // Percentage along path / total seconds (reaches end in 15 seconds)
+        velocity = originalvelocity;
         spriteFile = "snail.png";
         moneyReward = 5;
         scoreReward = 1;

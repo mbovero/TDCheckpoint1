@@ -27,6 +27,7 @@ abstract public class Projectile extends GameObject
     protected double killRange;                 // The range in which the projectile will collide with an enemy
     protected String spriteFile;                // The name of the file to be used as the enemy's sprite
     private Enemy target;                       // The enemy at which the projectile was shot
+    protected int damage;
 
     // Constructor
     public Projectile (State state, Control control, int x, int y)
@@ -83,12 +84,9 @@ abstract public class Projectile extends GameObject
         {
             double distance = Math.sqrt(Math.pow((e.getPosition().x - xPos), 2) + Math.pow((e.getPosition().y - yPos), 2));
             if (distance < killRange) {
-                e.setExpiration(true);
-                e.setVisibility(false);
                 this.isExpired = true;
                 this.isVisible = false;
-                state.changeScore(e.getScoreReward());
-                state.changeMoney(e.getMoneyReward());
+                effect(e);
             }
         }
     }
@@ -104,4 +102,12 @@ abstract public class Projectile extends GameObject
         BufferedImage image = control.loadImage(spriteFile);
         g.drawImage(image, (int)xPos-(image.getWidth()/2), (int)yPos-(image.getHeight()/2), null);
     }
+
+    /**
+     * Abstract method lets the specific Projectile object interact
+     * with the Enemy object in an individual way
+     *
+     * @param e enemy to effect
+     */
+    abstract public void effect (Enemy e);
 }

@@ -11,20 +11,22 @@ import game.Control;
 import game.State;
 import game.enemies.Enemy;
 
-public class Projectile_Salt extends Projectile
+public class Projectile_SpecialSalt extends Projectile
 {
     // Constructor
-    public Projectile_Salt(State state, Control control, int x, int y)
+    public Projectile_SpecialSalt(State state, Control control, int x, int y)
     {
         super(state, control, x, y);
         killRange = 50;
         spriteFile = "salt_crystals.png";
         speed = 10;
-        damage = 5;
+        damage = 7;
     }
 
     @Override
-    public void effect(Enemy e) {
+    public void effect(Enemy e)
+    {
         e.changeHealth(-damage);
+        e.setEffect("salted.png", 0, 3);
     }
 }

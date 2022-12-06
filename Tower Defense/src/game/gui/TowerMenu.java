@@ -1,5 +1,13 @@
+/**
+ * Class used to display the upgrades of a tower for purchasing and
+ * reading what the current selected tower has.
+ *
+ * @author Miles Bovero, Kirt Robinson
+ * @verison December 5, 2022
+ */
 package game.gui;
 
+import game.Clickable;
 import game.Control;
 import game.GameObject;
 import game.State;
@@ -11,20 +19,31 @@ public class TowerMenu extends GameObject
 {
     protected String towerName;             //Holds the name of the tower to display
     protected Tower tower;
-    protected UpgradeButton upgrade1;
-    protected UpgradeButton upgrade2;
-    protected UpgradeButton upgrade3;
-    public TowerMenu (Tower tower, State state, Control control)
+    public TowerMenu (Tower tower, State state, Control control)            //State has to be called thing for some reason
     {
-        this.tower = tower;
-        this.towerName = tower.getTowerName();
-        this.upgrade1 = new UpgradeButton(tower, towerName,1);
+        isVisible = true;
+        isExpired = false;
+        this.tower = tower;                                                   //Set referenced tower
+        this.towerName = tower.getTowerName();                                //Get the name of the type of tower
+        this.state = state;                                                   //Set up state and control
+        this.control = control;
+        state.addGameObject(new UpgradeButton(tower, towerName,0, state, control));        //Set up all upgrade buttons
+        state.addGameObject(new UpgradeButton(tower, towerName,1, state, control));
+        state.addGameObject(new UpgradeButton(tower, towerName,2, state, control));
+        state.addGameObject(new ExitButton(this, state, control));                //Make an Exit button
+
+
     }
     @Override
     public void update(double elapsedTime) {
 
     }
 
+    /**
+     * Draws the background & title of the TowerMenu Object
+     *
+     * @param g graphics object to draw with
+     */
     @Override
     public void draw(Graphics g) {
         //draw side menu
@@ -36,43 +55,21 @@ public class TowerMenu extends GameObject
         g.setFont(new Font("SansSerif", Font.BOLD, 36));
         g.drawString(towerName, 650, 50);
     }
-}
 
-
-class UpgradeButton extends GameObject {
-    protected String towerName;
-    protected int upgrade;
-    protected Tower tower;
-
-    UpgradeButton (Tower tower, String towerName, int upgrade) {
-        this.towerName = towerName;
-        this.upgrade = upgrade;
-        this.tower = tower;
-    }
-    @Override
-    public void update(double elapsedTime) {
-
-    }
-
-    @Override
-    public void draw(Graphics g) {
-        if (upgrade == 1) {
-            if ()
+    /**
+     * Method that allows the user to close the TowerMenu object and remove it from play
+     */
+    public void exit() {
+        for (GameObject go : state.getFrameObjects())
+        {
+            if (go instanceof UpgradeButton)
             {
-                //Draw "bought"
+                UpgradeButton ub = (UpgradeButton) go;
+                ub.exit();
             }
-            g.setColor(new Color(208, 208, 208));
-            g.fillRect(600, 75, 200, 100);        //Box for upgrade
-            g.drawImage(control.loadImage(), 710, 85);              //Image for upgrade
-            //Title for upgrade
-            //Cost for upgrade displayed
-            //Description for upgrade
         }
-        else if (upgrade == 2) {
-
-        }
-        else if (upgrade == 3) {
-
-        }
+        this.isVisible = false;
+        this.isExpired = true;
+        state.setTowerMenu(false);
     }
 }

@@ -2,7 +2,7 @@
  * This superclass creates and allows for interactions and use of tower objects.
  *
  * @author Miles Bovero, Kirt Robinson
- * @version December 3, 2022
+ * @version December 5, 2022
  */
 package game.towers;
 
@@ -10,6 +10,7 @@ import game.Clickable;
 import game.Control;
 import game.GameObject;
 import game.State;
+import game.gui.TowerMenu;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -25,7 +26,10 @@ abstract public class Tower extends GameObject implements Clickable
     private double timeToNextProjectileCycle;   // Used to track projectile shooting
     protected PurchaseTower purchaseTower;      // The tower purchase button related to this tower
     protected String towerName;
-    protected boolean[] upgrades;
+    protected boolean[] upgrades = new boolean[] {false, false, false};
+    protected int totalUpgrades = 0;
+    protected int shots;
+    protected int shotType;
 
     //Constructor
     public Tower(State state, Control control, boolean isMoving, PurchaseTower purchaseTower)
@@ -48,17 +52,17 @@ abstract public class Tower extends GameObject implements Clickable
             x = control.getMouseX();
             y = control.getMouseY();
         }
-
         // Shoot projectile based on fire rate
         timeToNextProjectileCycle -= elapsedTime;
         if (!isMoving && timeToNextProjectileCycle <= 0 && !state.getGameOver())
         {
             if (state.findNearestEnemy(new Point(x, y), range) != null)           // If there is an enemy to shoot...
             {
-                shoot();
+                shoot(shotType, shots);
                 timeToNextProjectileCycle = fireRate;
             }
         }
+        customUpdate();
     }
 
     /**
@@ -109,6 +113,7 @@ abstract public class Tower extends GameObject implements Clickable
     {
         Point p = state.findNearestPathPoint(new Point(x,y));
         double distance = Math.sqrt(Math.pow((p.x - x),2) + Math.pow((p.y - y),2));
+        double nearTower = Math.sqrt(Math.pow((x - mouseX),2) + Math.pow((y - mouseY),2));
 
         if (isMoving &&
             mouseX < 600 && mouseY < 600 &&                 // Restrict placement to game area
@@ -120,18 +125,24 @@ abstract public class Tower extends GameObject implements Clickable
             control.setPlacingTower(false);
             return true;
         }
-        //implement clicking tower menu
+        else if (!isMoving && mouseX < 600 && mouseY < 600 &&                 // Restrict placement to game area
+                nearTower < 15 && state.getTowerMenu() == false)
+        {
+            state.addGameObject(new TowerMenu(this, state, control));   //Add the TowerMenu to display
+            state.setTowerMenu(true);                                         //Tell the game we are in the TowerMenu
+            return true;
+        }
         return false;
     }
 
     /**
-     * Method to return the moving state of the Tower object
+     * Method to return the moving state of the Tower object.
      * @return
      */
     public boolean getMoving (){return isMoving;}
 
     /**
-     * Method that removes the Tower object from play
+     * Method that removes the Tower object from play.
      */
     public void trash ()
     {
@@ -144,23 +155,51 @@ abstract public class Tower extends GameObject implements Clickable
      * A method that determines what projectile is
      * shot from the tower.
      */
-    abstract public void shoot ();
+    abstract public void shoot (int version, int shots);
 
+    /**
+     * Accessor method to return the name of the current tower.
+     *
+     * @return Name of the current tower
+     */
     public String getTowerName () {return towerName;}
 
     /**
-     * An accessor method that returns the upgrades list
-     * @return
+     * An accessor method that returns the boolean state of a selected upgrade.
+     *
+     * @return boolean value relating to having an upgrade
      */
-    public boolean[] getUpgrades () {return upgrades;}
+    public boolean getUpgrades (int upgrade) {return upgrades[upgrade];}
 
     /**
-     * A method that changes the state of the upgrades on this Tower object
+     * A method that changes the state of the upgrades on this Tower object.
      *
      * @param upgrade which upgrade to change
      * @param value what state to set the upgrade to
      */
-    public void setUpgrades (int upgrade, boolean value) {this.upgrades[upgrade] = value;}
+    abstract public void setUpgrades (int upgrade, boolean value);
 
-    abstract public String[][] getUpgradeInfo ();
+    /**
+     * Collects the specific upgrade information from a chosen place
+     * inside the information String[].
+     *
+     * @param upgrade which upgrade currently selecting
+     * @param info the place that holds a certain piece of information to call to
+     * @return
+     */
+    abstract public String getUpgradeInfo (int upgrade, int info);
+
+    /**
+     * Abstract method to execute an individual tower's updating
+     * without losing general updating functionality.
+     */
+    abstract public void customUpdate ();
+
+    /**
+     * Accessor method that returns the total amount of
+     * upgrades a tower currently has.
+     *
+     * @return an int amount of upgrades
+     */
+    public int getTotalUpgrades () {return totalUpgrades;}
 }

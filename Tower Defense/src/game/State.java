@@ -18,7 +18,7 @@ public class State {
     protected List<GameObject> currentFrameGameObjects;             // The game objects currently being displayed
     protected List<GameObject> nextFrameGameObjects;                // The game objects to be displayed next
     private int health = 100;                                       // The user's starting health
-    private int money = 300;                                        // The user's starting amount of money
+    private int money = 3000;                                        // The user's starting amount of money
     private  int score = 0;                                         // The user's starting score
     protected boolean gameOver;                                     // Whether the user has lost and the game is over
     protected Control control;
@@ -251,6 +251,62 @@ public class State {
         }
         return nearestPoint;
     }
+/*
+    /**
+     * A method that determines which point along the path
+     * is nearest to the provided x/y coordinate AND uses a minimum distance
+     *
+     * @param loc the point from which the nearest path point is calculated
+     * @return the nearest point on the path
+     *
+    public Point[] findNearestPathPoints (Point loc, double range)
+    {
+        // Setup
+        double smallestDistance = 1000;             // Used to calculate smallest distances
+        double distance;                            // Stores length between points
+        Point point1 = new Point();                 // First-smallest path point
+        Point point2 = new Point();                 // Second-smallest path point
+        Point[] nearestPoint = new Point[2];           // Overall nearest point to tower
+        Path path = control.getPath();              // Path that points are taken from
+
+        // Find the path segment (2 points) that is closest to the tower
+        for (int i=0; i<path.getPointCount()-1; i++)
+        {
+            distance = Math.sqrt(Math.pow((path.getX(i) - loc.x),2) + Math.pow((path.getY(i) - loc.y),2));
+            if (distance < smallestDistance)
+            {
+                smallestDistance = distance;
+                point2 = new Point(path.getX(i+1),path.getY(i+1));
+                point1 = new Point(path.getX(i),path.getY(i));
+            }
+        }
+
+        // Find the point along the segment that is closest to the tower (accuracy of 5 pixels)
+        // Calculate segment length
+        distance = Math.sqrt(Math.pow((point2.x - point1.x),2) + Math.pow((point2.y - point1.y),2));
+        // Calculate how many iterations needed to accurately find nearest point
+        int pathDivisions = (int)(distance/5);
+        smallestDistance = 1000;    // Reset
+        // Iterate along segment
+        for(int i=0; i<pathDivisions; i++)
+        {
+            // Iterate along every 5 pixel division of the found segment and get x/y values
+            double segmentPercent = (5*i)/distance;
+            double x = (1-segmentPercent)*point1.x + (segmentPercent)*point2.x;
+            double y = (1-segmentPercent)*point1.y + (segmentPercent)*point2.y;
+            // Calculate distance from tower
+            distance = Math.sqrt(Math.pow((x - loc.x),2) + Math.pow((y - loc.y),2));
+            // Store smallest distance and point
+            if (distance < smallestDistance && distance >=range)
+            {
+                smallestDistance = distance;
+                nearestPoint[0] = new Point((int)x,(int)y);
+            }
+            else if(point1)
+        }
+        return nearestPoint;
+    }
+    */
 
     /**
      * An accessor method that gets the game's total run time.

@@ -3,7 +3,7 @@
  * tower purchase buttons.
  *
  * @author Miles Bovero, Kirt Robinson
- * @version December 3, 2022
+ * @version December 5, 2022
  */
 package game.towers;
 
@@ -81,7 +81,8 @@ abstract public class PurchaseTower extends GameObject implements Clickable
                 mouseY >= yDraw && mouseY <= yDraw+60 &&
                 !state.getGameOver() &&
                 state.getMoney() >= cost &&
-                !control.getPlacingTower())
+                !control.getPlacingTower() &&
+                state.getTowerMenu() == false)
         {
             placeTower();
             control.setPlacingTower(true);

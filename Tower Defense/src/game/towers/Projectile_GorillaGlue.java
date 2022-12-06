@@ -13,10 +13,10 @@ import game.enemies.Enemy;
 
 import java.awt.*;
 
-public class Projectile_Glue extends Projectile
+public class Projectile_GorillaGlue extends Projectile
 {
     // Constructor
-    public Projectile_Glue(State state, Control control, int x, int y)
+    public Projectile_GorillaGlue(State state, Control control, int x, int y)
     {
         super(state, control, x, y);
         killRange = 50;
@@ -26,14 +26,10 @@ public class Projectile_Glue extends Projectile
     }
 
 
-    /**
-     *
-     * @param e enemy to effect
-     */
     @Override
     public void effect(Enemy e)
     {
         e.changeVelocity(.5);
-        e.setEffect("glued.png", 1, 7);
+        e.setEffect("gorilla_glued.png", 1, 0);
     }
 }

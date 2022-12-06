@@ -3,7 +3,7 @@
  * tower that is available to buy in the sidebar menu.
  *
  * @author Miles Bovero, Kirt Robinson
- * @version December 3, 2022
+ * @version December 5, 2022
  */
 package game.towers;
 
@@ -25,10 +25,7 @@ public class PurchaseTower_Salt extends PurchaseTower {
     @Override
     public void update(double elapsedTime) {}
 
-    public void placeTower()
-    {
-        state.addGameObject(new Tower_Salt(state, control, true, this));
-    }
+    public void placeTower() {state.addGameObject(new Tower_Salt(state, control, true, this));}
 
     public int getCost()
     {

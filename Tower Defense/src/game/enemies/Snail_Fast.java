@@ -18,7 +18,8 @@ public class Snail_Fast extends Enemy{
     {
         super(state, control);
         healthSubtract = -2;
-        velocity = 1.0/10;
+        originalvelocity = 1.0/10;
+        velocity = originalvelocity;
         spriteFile = "snail_fast.png";
         moneyReward = 10;
         scoreReward = 1;

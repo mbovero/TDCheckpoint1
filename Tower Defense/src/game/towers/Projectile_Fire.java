@@ -1,0 +1,23 @@
+package game.towers;
+
+import game.Control;
+import game.State;
+import game.enemies.Enemy;
+
+public class Projectile_Fire extends Projectile {
+    public Projectile_Fire(State state, Control control, int x, int y) {
+        super(state, control, x, y);
+        killRange = 50;
+        spriteFile = "light.png";
+        this.speed = 20;
+        damage = 5;
+    }
+
+    @Override
+    public void effect(Enemy e) {
+        e.changeHealth(-damage);
+        state.addGameObject(new AreaOfEffect_Fire(state, control, xPos, yPos, 0));
+    }
+
+
+}

@@ -10,28 +10,56 @@ package game.towers;
 import game.Control;
 import game.State;
 
+import java.awt.*;
+
 public class Tower_Magnifying extends Tower{
 
-    protected String[][] magnifying_glass = new String[][]          //Information for Magnifying Glass upgrades
-            {{"", "Concentrated Fire", "120", "Burn them to the ground"},{"", "Wider Lens", "75", "I see all of you", "Cover a wider range"},{"", "Diffraction", "100", "MORE LASERS PLEASE"}};
+    protected String[][] information = new String[][]          //Information for Magnifying Glass upgrades - Information format: {image, name, cost, description},{sameinfo},{sameinfo}
+            {{"concentrated_fire.png", "Concentrated Fire", "120", "Burn them to the ground"},{"wide_lens.png", "Wider Lens", "75", "I see all of you", "Cover a wider range"},{"diffraction.png", "Diffraction", "100", "MORE LASERS PLEASE"}};
 
     //Contstructor
     public Tower_Magnifying(State state, Control control, boolean isMoving, PurchaseTower purchaseTower)
     {
         super(state, control, isMoving, purchaseTower);
-        this.fireRate = 4;
-        this.spriteFile = "magnifying_glass.png";
-        this.range = 300;
-        this.towerName = "Magnifying Glass";
-    }
-
-    @Override
-    public void shoot() {
+        fireRate = 4;
+        spriteFile = "magnifying_glass.png";
+        range = 300;
+        towerName = "Magnifying Glass";
+        shots = 1;
+        shotType = 0;
 
     }
 
     @Override
-    public String[][] getUpgradeInfo() {
-        return new String[0][];
+    public void shoot(int version, int shots)
+    {
+        //Loop through and make as many projectiles as the current tower has shots of
+        for (int i = 0; i <= shots; i++) {state.addGameObject(new Projectile_Fire(state, control, x, y));}
+        //Gather information for creating burnspot/firespread
+        Point p = state.findNearestPathPoint(new Point(x,y));
+
+
     }
+
+    @Override
+    public void setUpgrades(int upgrade, boolean value) {
+        upgrades[upgrade] = value;
+        totalUpgrades += 1;
+        if (upgrade == 0) {shots = 5; shotType = 1;}
+        if (upgrade == 1) {}
+        if (upgrade == 2) {shotType = 1;}
+
+        if (upgrades[0] && upgrades [1]) {spriteFile = "forest_fire.png";}
+        if (upgrades[1] && upgrades [2]) {spriteFile = "wide_rainbow.png";}
+        if (upgrades[0] && upgrades [2]) {spriteFile = "fire_hazard.png";}
+        }
+
+    @Override
+    public String getUpgradeInfo(int upgrade, int info) {return information[upgrade][info];}
+
+    @Override
+    public void customUpdate() {
+
+    }
+
 }
